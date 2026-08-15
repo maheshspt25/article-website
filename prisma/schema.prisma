@@ -1,0 +1,183 @@
+// Prisma Schema for SEO-First Indian Information Platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  role      String   @default("EDITOR") // ADMIN, EDITOR, AUTHOR
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    Author?
+}
+
+model Author {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  avatar      String?
+  bio         String?
+  designation String?   @default("Senior Editorial Staff")
+  userId      String?   @unique
+  user        User?     @relation(fields: [userId], references: [id])
+  articles    Article[]
+  jobs        Job[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Category {
+  id          String     @id @default(uuid())
+  name        String
+  slug        String     @unique
+  description String?
+  type        String     @default("GENERAL") // JOBS, EDUCATION, TECH, HOW_TO, FINANCE, TRAVEL, SHOPPING, HEALTH
+  parentId    String?
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  articles    Article[]
+  jobs        Job[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Location {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  state       String
+  country     String    @default("India")
+  latitude    Float?
+  longitude   Float?
+  description String?
+  isActive    Boolean   @default(true)
+  jobs        Job[]
+  articles    Article[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([state])
+}
+
+model Article {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  summary     String
+  content     String   // Dynamic HTML/Markdown content
+  categorySection String // technology, how-to, education, finance, travel, shopping, etc.
+  subCategory String?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  locationId  String?
+  location    Location? @relation(fields: [locationId], references: [id])
+  authorId    String
+  author      Author    @relation(fields: [authorId], references: [id])
+  published   Boolean   @default(true)
+  featured    Boolean   @default(false)
+  views       Int       @default(0)
+  readingTime String?   @default("5 min read")
+  
+  // Custom content sections
+  tocJson          String? // JSON string of headings
+  stepByStepJson   String? // JSON string of steps
+  comparisonJson   String? // JSON string for mobile specs / comparisons
+  faqJson          String? // JSON string of FAQs
+  sourcesJson      String? // JSON string of references/sources
+  disclaimer       String? // Financial / Health disclaimer
+
+  // SEO metadata
+  metaTitle        String?
+  metaDescription  String?
+  canonicalUrl     String?
+  keywords         String?
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([slug])
+  @@index([categorySection])
+  @@index([published])
+  @@index([createdAt])
+}
+
+model Job {
+  id                     String    @id @default(uuid())
+  title                  String
+  slug                   String    @unique
+  organization           String
+  category               String    @default("government-jobs") // government-jobs, private-jobs, exam-dates, results, admit-card, salary, interview-questions
+  categoryId             String?
+  categoryRel            Category? @relation(fields: [categoryId], references: [id])
+  locationName           String    @default("All India")
+  locationId             String?
+  location               Location? @relation(fields: [locationId], references: [id])
+  jobType                String    @default("Full Time")
+  qualification          String
+  experience             String    @default("Freshers Welcome")
+  salaryMin              Int?
+  salaryMax              Int?
+  salaryDisplay          String?   @default("Rs 35,400 - 1,12,400 per month")
+  vacancyCount           Int?      @default(100)
+  applicationStartDate   DateTime?
+  applicationEndDate     DateTime?
+  examDate               DateTime?
+  officialNotificationUrl String?
+  officialApplicationUrl String?
+  description            String
+  eligibility            String
+  selectionProcess       String
+  syllabus               String?
+  importantDatesJson     String?   // JSON array of date objects
+  documentsRequired      String?
+  faqJson                String?   // JSON array of FAQs
+  published              Boolean   @default(true)
+  featured               Boolean   @default(false)
+  views                  Int       @default(0)
+  authorId               String?
+  author                 Author?   @relation(fields: [authorId], references: [id])
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([published])
+  @@index([createdAt])
+}
+
+model Tag {
+  id    String @id @default(uuid())
+  name  String
+  slug  String @unique
+}
+
+model Tool {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  category    String   @default("Finance & Utility")
+  description String
+  icon        String   @default("Calculator")
+  isFeatured  Boolean  @default(true)
+  usageCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model SEOData {
+  id          String   @id @default(uuid())
+  path        String   @unique
+  title       String
+  description String
+  keywords    String?
+  canonicalUrl String?
+  updatedAt   DateTime @updatedAt
+}
