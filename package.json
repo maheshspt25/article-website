@@ -10,7 +10,8 @@
     "test": "node scratch/run_tool_tests.js",
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
-    "db:seed": "ts-node -O '{\"module\":\"CommonJS\"}' prisma/seed.ts"
+    "db:seed": "ts-node -O '{\"module\":\"CommonJS\"}' prisma/seed.ts",
+    "db:seed-all": "node scratch/seed_all.js"
   },
   "prisma": {
     "seed": "ts-node -O '{\"module\":\"CommonJS\"}' prisma/seed.ts"
