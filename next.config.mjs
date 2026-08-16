@@ -2,20 +2,19 @@
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-// Strict Content Security Policy (CSP) with Google Analytics & Microsoft Clarity permissions
+// Content Security Policy (CSP) allowing Google Analytics & Microsoft Clarity scripts/subdomains
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://c.clarity.ms ${isDev ? "'unsafe-eval'" : ''};
-  connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.clarity.ms;
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://scripts.clarity.ms https://c.clarity.ms ${isDev ? "'unsafe-eval'" : ''};
+  connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.clarity.ms https://scripts.clarity.ms;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https: https://www.google-analytics.com https://c.clarity.ms;
+  img-src 'self' blob: data: https: https://www.google-analytics.com https://*.google-analytics.com https://c.clarity.ms https://*.clarity.ms;
   media-src 'self' blob: https://translate.google.com;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
-  block-all-mixed-content;
   upgrade-insecure-requests;
 `.replace(/\s{2,}/g, ' ').trim();
 

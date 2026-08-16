@@ -22,6 +22,7 @@ export default function Analytics() {
               gtag('js', new Date());
               gtag('config', '${gaId}', {
                 page_path: window.location.pathname,
+                cookie_flags: 'max-age=7200;secure;samesite=none'
               });
             `}
           </Script>
