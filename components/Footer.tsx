@@ -23,10 +23,10 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm font-medium">
-              InfoMitra is India&apos;s leading digital knowledge &amp; web utility portal committed to publishing verified tech comparisons, practical how-to guides, financial tax calculators, and client-side web tools.
+              InfoMitra is India&apos;s leading digital knowledge &amp; web utility portal committed to publishing practical tech comparisons, how-to guides, financial tax calculators, and client-side web tools.
             </p>
             <div className="pt-2 text-xs text-slate-300 space-y-1 font-medium">
-              <p className="flex items-center gap-1.5"><span className="text-sky-400">✔</span> Fact-Checked Editorial Desk</p>
+              <p className="flex items-center gap-1.5"><span className="text-sky-400">✔</span> Editorial &amp; Information Desk</p>
               <p className="flex items-center gap-1.5"><span className="text-sky-400">✔</span> 100% Free Client-Side Utility Tools</p>
             </div>
           </div>

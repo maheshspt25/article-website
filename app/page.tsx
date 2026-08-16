@@ -39,7 +39,7 @@ export default async function HomePage() {
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-6">
           <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-800 px-3.5 py-1 rounded-full text-xs font-bold shadow-xs">
             <ShieldCheck className="w-4 h-4 text-blue-600" />
-            100% Verified Digital Knowledge & Web Utilities
+            Practical Digital Guides, Tools & Information
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">

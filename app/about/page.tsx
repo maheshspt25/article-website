@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose my-6">
           <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
             <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-sky-600" /> Fact-Checked Verification
+              <ShieldCheck className="w-4 h-4 text-sky-600" /> Reference Citations &amp; Documentation
             </h3>
             <p className="text-xs text-slate-600">All published guides cite official documentation and primary reference sources.</p>
           </div>

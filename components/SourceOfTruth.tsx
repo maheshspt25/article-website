@@ -18,7 +18,7 @@ export default function SourceOfTruth({
     { title: 'Official Government Gazette & Department Portal', url: 'https://india.gov.in', authority: 'Government of India' }
   ],
   lastVerifiedDate = new Date(),
-  checkerName = 'InfoMitra Editorial & Fact-Checking Desk'
+  checkerName = 'InfoMitra Editorial Desk'
 }: SourceOfTruthProps) {
   const formattedDate = new Date(lastVerifiedDate).toLocaleDateString('en-IN', {
     day: 'numeric',
@@ -31,15 +31,15 @@ export default function SourceOfTruth({
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-500/20 pb-3">
         <div className="flex items-center gap-2 text-emerald-900 font-extrabold text-sm sm:text-base">
           <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-          Verified Source of Truth & Primary Citations
+          Primary References & Official Documentation
         </div>
         <div className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 font-extrabold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-          <CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> 100% Fact-Checked
+          <CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> Reference Citations
         </div>
       </div>
 
       <p className="text-xs text-zinc-700 leading-relaxed font-medium">
-        InfoMitra enforces a zero-misinformation policy. Every statement and rule published in this guide is derived directly from official government gazettes, regulatory announcements, and primary documentation.
+        InfoMitra maintains rigorous publishing standards. Statements and instructions in this guide reference official documentation and primary sources.
       </p>
 
       <div className="space-y-2">
@@ -67,8 +67,8 @@ export default function SourceOfTruth({
       </div>
 
       <div className="pt-2 text-[11px] text-zinc-500 border-t border-emerald-500/10 flex flex-wrap justify-between items-center gap-2">
-        <span>Verified By: <strong className="text-zinc-700">{checkerName}</strong></span>
-        <span>Last Audit: <strong className="text-zinc-700">{formattedDate}</strong></span>
+        <span>Editorial Desk: <strong className="text-zinc-700">{checkerName}</strong></span>
+        <span>Last Updated: <strong className="text-zinc-700">{formattedDate}</strong></span>
       </div>
     </div>
   );

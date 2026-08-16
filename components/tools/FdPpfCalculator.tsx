@@ -39,7 +39,7 @@ export default function FdPpfCalculator() {
             <PiggyBank className="w-6 h-6 text-emerald-600" /> FD &amp; PPF Maturity Calculator
           </h1>
           <p className="text-xs text-zinc-500 font-medium mt-1">
-            Calculate guaranteed maturity returns, total interest earned, and compound wealth growth for FD and PPF savings.
+            Calculate estimated maturity returns, total interest earned, and compound wealth growth for FD and PPF savings.
           </p>
         </div>
 
