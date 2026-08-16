@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
+import Analytics from '@/components/Analytics';
 import { constructMetadata, generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = constructMetadata({});
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

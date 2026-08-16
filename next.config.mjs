@@ -2,12 +2,13 @@
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-// Strict Content Security Policy (CSP) definition
+// Strict Content Security Policy (CSP) with Google Analytics & Microsoft Clarity permissions
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''};
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://c.clarity.ms ${isDev ? "'unsafe-eval'" : ''};
+  connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.clarity.ms;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https:;
+  img-src 'self' blob: data: https: https://www.google-analytics.com https://c.clarity.ms;
   media-src 'self' blob: https://translate.google.com;
   font-src 'self' data:;
   object-src 'none';
