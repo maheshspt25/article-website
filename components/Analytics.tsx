@@ -5,6 +5,7 @@ import Script from 'next/script';
 export default function Analytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+  const adsensePubId = process.env.NEXT_PUBLIC_ADSENSE_PUB_ID;
 
   return (
     <>
@@ -42,6 +43,16 @@ export default function Analytics() {
             window.clarity("consent");
           `}
         </Script>
+      )}
+
+      {/* Google AdSense Auto-Ads Script */}
+      {adsensePubId && (
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePubId}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       )}
     </>
   );
