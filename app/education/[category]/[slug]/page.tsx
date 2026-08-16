@@ -9,6 +9,9 @@ import { getArticleBySlug, getLatestArticles } from '@/lib/queries';
 import { constructMetadata, generateArticleJsonLd, generateFaqJsonLd } from '@/lib/seo';
 import { Calendar, Clock, User, GraduationCap, HelpCircle } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface ArticlePageProps {
   params: { category: string; slug: string };
 }

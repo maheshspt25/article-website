@@ -10,6 +10,9 @@ import { getArticleBySlug, getLatestArticles } from '@/lib/queries';
 import { constructMetadata, generateArticleJsonLd, generateFaqJsonLd } from '@/lib/seo';
 import { Calendar, Clock, User, ShieldAlert, HelpCircle } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface FinanceArticlePageProps {
   params: { category: string; slug: string };
 }

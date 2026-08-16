@@ -24,6 +24,9 @@ import {
   Clock
 } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface JobPageProps {
   params: { slug: string };
 }

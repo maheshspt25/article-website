@@ -10,11 +10,14 @@ import { getArticleBySlug, getLatestArticles } from '@/lib/queries';
 import { constructMetadata, generateArticleJsonLd } from '@/lib/seo';
 import { Calendar, Clock, User, ShieldAlert } from 'lucide-react';
 
-interface ArticlePageProps {
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
+interface HealthArticlePageProps {
   params: { category: string; slug: string };
 }
 
-export async function generateMetadata({ params }: ArticlePageProps) {
+export async function generateMetadata({ params }: HealthArticlePageProps) {
   const article = await getArticleBySlug(params.slug);
   if (!article) return {};
 
@@ -26,7 +29,7 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   });
 }
 
-export default async function HealthDetailCatPage({ params }: ArticlePageProps) {
+export default async function HealthDetailCatPage({ params }: HealthArticlePageProps) {
   const article = await getArticleBySlug(params.slug);
   if (!article) {
     notFound();

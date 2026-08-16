@@ -11,6 +11,9 @@ import { getArticleBySlug, getLatestArticles } from '@/lib/queries';
 import { constructMetadata, generateArticleJsonLd, generateFaqJsonLd } from '@/lib/seo';
 import { Calendar, Clock, User, HelpCircle, ThumbsUp } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface TechArticlePageProps {
   params: { category: string; slug: string };
 }
