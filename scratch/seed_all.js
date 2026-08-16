@@ -2,6 +2,15 @@ const { execSync } = require('child_process');
 
 console.log('🌱 Initiating Full Master Data Seeding Sequence for InfoMitra Platform...\n');
 
+// Ensure database schema and tables (main.Job, main.Article, etc.) exist before seeding
+try {
+  console.log('🔨 Ensuring database schema tables (Job, Article, Tool, Location) are created...');
+  execSync('npx prisma db push --skip-generate', { stdio: 'inherit' });
+  console.log('✅ Database schema verified.\n');
+} catch (err) {
+  console.error('⚠️ Warning during db push:', err.message);
+}
+
 const seedFiles = [
   'prisma/seed.ts',
   'scratch/seed_all_additional_tools.js',
