@@ -21,6 +21,11 @@ const cspHeader = `
 
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
+  compress: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+  },
   images: {
     remotePatterns: [
       {
@@ -30,7 +35,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', 'date-fns'],
   },
   async headers() {
     return [

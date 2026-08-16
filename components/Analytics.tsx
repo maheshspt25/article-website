@@ -5,18 +5,18 @@ import Script from 'next/script';
 export default function Analytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
-  const adsensePubId = process.env.NEXT_PUBLIC_ADSENSE_PUB_ID;
+  const adsensePubId = process.env.NEXT_PUBLIC_ADSENSE_PUB_ID || 'ca-pub-1860301116647636';
 
   return (
     <>
-      {/* Google Analytics GA4 */}
+      {/* Google Analytics GA4 - Non-blocking lazyOnload */}
       {gaId && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="google-analytics" strategy="afterInteractive">
+          <Script id="google-analytics" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -31,9 +31,9 @@ export default function Analytics() {
         </>
       )}
 
-      {/* Microsoft Clarity */}
+      {/* Microsoft Clarity - Non-blocking lazyOnload */}
       {clarityId && (
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -45,13 +45,13 @@ export default function Analytics() {
         </Script>
       )}
 
-      {/* Google AdSense Auto-Ads Script */}
+      {/* Google AdSense Auto-Ads - Non-blocking lazyOnload */}
       {adsensePubId && (
         <Script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePubId}`}
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       )}
     </>
