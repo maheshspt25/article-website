@@ -78,7 +78,6 @@ export default function AdminLoginPage() {
             </div>
             {/* <p className="text-[11px] text-slate-500 font-medium">Protected by <code className="text-blue-700 font-mono font-bold">ADMIN_SECRET</code> in environment configuration.</p> */}
           </div>
-
           <button
             type="submit"
             disabled={loading}
