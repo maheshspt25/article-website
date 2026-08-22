@@ -7,16 +7,29 @@ import { FileText, PlusCircle, CheckCircle, Edit, Trash2, Layers, Sparkles, Tren
 export const revalidate = 0;
 
 export default async function AdminDashboardPage() {
-  const [totalArticles, howToCount, publishedCount, recentArticles] = await Promise.all([
-    prisma.article.count(),
-    prisma.article.count({ where: { categorySection: 'how-to' } }),
-    prisma.article.count({ where: { published: true } }),
-    prisma.article.findMany({
-      orderBy: { updatedAt: 'desc' },
-      take: 10,
-      include: { author: { select: { name: true } } }
-    })
-  ]);
+  let totalArticles = 0;
+  let howToCount = 0;
+  let publishedCount = 0;
+  let recentArticles: any[] = [];
+
+  try {
+    const [total, howTo, published, articles] = await Promise.all([
+      prisma.article.count(),
+      prisma.article.count({ where: { categorySection: 'how-to' } }),
+      prisma.article.count({ where: { published: true } }),
+      prisma.article.findMany({
+        orderBy: { updatedAt: 'desc' },
+        take: 10,
+        include: { author: { select: { name: true } } }
+      })
+    ]);
+    totalArticles = total;
+    howToCount = howTo;
+    publishedCount = published;
+    recentArticles = articles;
+  } catch (error) {
+    console.error('Error querying Prisma database in Admin Dashboard:', error);
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
