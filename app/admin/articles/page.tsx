@@ -53,7 +53,6 @@ export default function AdminArticlesListPage() {
     { name: 'Internet', value: 'internet' }
   ];
 
-  const fetchArticles = async () => {
   const fetchArticles = React.useCallback(async () => {
     setLoading(true);
     try {
@@ -71,12 +70,10 @@ export default function AdminArticlesListPage() {
     } finally {
       setLoading(false);
     }
-  };
   }, [searchQuery, selectedSubCat]);
 
   useEffect(() => {
     fetchArticles();
-  }, [selectedSubCat]);
   }, [fetchArticles]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -260,4 +257,4 @@ export default function AdminArticlesListPage() {
       </main>
     </div>
   );
-
+}
