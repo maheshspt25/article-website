@@ -54,6 +54,7 @@ export default function AdminArticlesListPage() {
   ];
 
   const fetchArticles = async () => {
+  const fetchArticles = React.useCallback(async () => {
     setLoading(true);
     try {
       let url = `/api/articles?limit=500`;
@@ -71,10 +72,12 @@ export default function AdminArticlesListPage() {
       setLoading(false);
     }
   };
+  }, [searchQuery, selectedSubCat]);
 
   useEffect(() => {
     fetchArticles();
   }, [selectedSubCat]);
+  }, [fetchArticles]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
