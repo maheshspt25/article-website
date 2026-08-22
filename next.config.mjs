@@ -36,10 +36,6 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react', 'date-fns'],
-    outputFileTracingIncludes: {
-      '/admin': ['./prisma/dev.db', './dev.db'],
-      '/api/**/*': ['./prisma/dev.db', './dev.db'],
-    },
   },
   async headers() {
     return [

@@ -1,35 +1,48 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { prisma } from '@/lib/prisma';
 import AdminHeader from '@/components/AdminHeader';
-import { FileText, PlusCircle, CheckCircle, Edit, Trash2, Layers, Sparkles, TrendingUp } from 'lucide-react';
+import { FileText, PlusCircle, CheckCircle, Edit, Layers, Sparkles, TrendingUp, RefreshCw } from 'lucide-react';
 
-export const revalidate = 0;
+interface ArticleItem {
+  id: string;
+  title: string;
+  slug: string;
+  categorySection: string;
+  subCategory: string | null;
+  published: boolean;
+  updatedAt: string;
+}
 
-export default async function AdminDashboardPage() {
-  let totalArticles = 0;
-  let howToCount = 0;
-  let publishedCount = 0;
-  let recentArticles: any[] = [];
+export default function AdminDashboardPage() {
+  const [totalArticles, setTotalArticles] = useState(0);
+  const [howToCount, setHowToCount] = useState(0);
+  const [publishedCount, setPublishedCount] = useState(0);
+  const [recentArticles, setRecentArticles] = useState<ArticleItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  try {
-    const [total, howTo, published, articles] = await Promise.all([
-      prisma.article.count(),
-      prisma.article.count({ where: { categorySection: 'how-to' } }),
-      prisma.article.count({ where: { published: true } }),
-      prisma.article.findMany({
-        orderBy: { updatedAt: 'desc' },
-        take: 10,
-        include: { author: { select: { name: true } } }
-      })
-    ]);
-    totalArticles = total;
-    howToCount = howTo;
-    publishedCount = published;
-    recentArticles = articles;
-  } catch (error) {
-    console.error('Error querying Prisma database in Admin Dashboard:', error);
-  }
+  useEffect(() => {
+    const fetchDashboardMetrics = async () => {
+      try {
+        const res = await fetch('/api/articles?limit=50');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.articles)) {
+          const articles: ArticleItem[] = data.articles;
+          setTotalArticles(data.pagination?.total || articles.length);
+          setHowToCount(articles.filter((a) => a.categorySection === 'how-to').length);
+          setPublishedCount(articles.filter((a) => a.published).length);
+          setRecentArticles(articles.slice(0, 10));
+        }
+      } catch (err) {
+        console.error('Error fetching admin dashboard metrics:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardMetrics();
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
@@ -48,7 +61,7 @@ export default async function AdminDashboardPage() {
               InfoMitra Editorial Desk & Content Hub
             </h1>
             <p className="text-sm text-blue-100 font-medium max-w-2xl">
-              Create, edit, search, publish, and manage all 563+ How-To guides, technical articles, and job postings across 25 categories.
+              Create, edit, search, publish, and manage all How-To guides, technical articles, and job postings across 25 categories.
             </p>
           </div>
 
@@ -70,7 +83,9 @@ export default async function AdminDashboardPage() {
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">Total Articles</span>
               <FileText className="w-5 h-5 text-blue-600" />
             </div>
-            <div className="text-3xl font-black text-slate-900">{totalArticles}</div>
+            <div className="text-3xl font-black text-slate-900">
+              {loading ? <RefreshCw className="w-6 h-6 animate-spin text-blue-600 inline" /> : totalArticles}
+            </div>
             <div className="text-xs text-slate-500 font-medium">Across all sections</div>
           </div>
 
@@ -79,7 +94,9 @@ export default async function AdminDashboardPage() {
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">How-To Guides</span>
               <Layers className="w-5 h-5 text-indigo-600" />
             </div>
-            <div className="text-3xl font-black text-indigo-600">{howToCount}</div>
+            <div className="text-3xl font-black text-indigo-600">
+              {loading ? <RefreshCw className="w-6 h-6 animate-spin text-indigo-600 inline" /> : howToCount}
+            </div>
             <div className="text-xs text-slate-500 font-medium">25 Sub-categories active</div>
           </div>
 
@@ -88,7 +105,9 @@ export default async function AdminDashboardPage() {
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">Published Status</span>
               <CheckCircle className="w-5 h-5 text-emerald-600" />
             </div>
-            <div className="text-3xl font-black text-emerald-600">{publishedCount}</div>
+            <div className="text-3xl font-black text-emerald-600">
+              {loading ? <RefreshCw className="w-6 h-6 animate-spin text-emerald-600 inline" /> : publishedCount}
+            </div>
             <div className="text-xs text-slate-500 font-medium">Live on search engines</div>
           </div>
 
@@ -109,78 +128,85 @@ export default async function AdminDashboardPage() {
               <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" /> Recently Modified Articles
               </h2>
-              <p className="text-xs text-slate-500 font-medium">Live sync with Prisma SQLite Database</p>
+              <p className="text-xs text-slate-500 font-medium">Live content management dataset</p>
             </div>
 
             <Link
               href="/admin/articles"
               className="text-xs font-extrabold text-blue-600 hover:text-blue-700 underline"
             >
-              View All 563+ Articles →
+              View All Articles →
             </Link>
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm text-slate-700">
-              <thead className="text-xs uppercase bg-slate-100/80 text-slate-600 border-b border-slate-200 font-bold">
-                <tr>
-                  <th className="py-3.5 px-4">Title & Slug</th>
-                  <th className="py-3.5 px-4">Category</th>
-                  <th className="py-3.5 px-4">Sub-Category</th>
-                  <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {recentArticles.map((article) => (
-                  <tr key={article.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3.5 px-4 max-w-xs">
-                      <div className="font-bold text-slate-900 truncate">{article.title}</div>
-                      <div className="text-xs text-slate-500 font-mono truncate">/{article.slug}</div>
-                    </td>
-                    <td className="py-3.5 px-4 text-xs font-extrabold text-blue-600">
-                      {article.categorySection}
-                    </td>
-                    <td className="py-3.5 px-4 text-xs font-semibold text-slate-600">
-                      <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[11px] font-bold border border-slate-200">
-                        {article.subCategory || 'General'}
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4">
-                      {article.published ? (
-                        <span className="bg-emerald-50 text-emerald-700 text-[10px] font-extrabold px-2 py-0.5 rounded border border-emerald-200 uppercase">
-                          Published
-                        </span>
-                      ) : (
-                        <span className="bg-amber-50 text-amber-700 text-[10px] font-extrabold px-2 py-0.5 rounded border border-amber-200 uppercase">
-                          Draft
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3.5 px-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Link
-                          href={`/admin/articles/${article.id}/edit`}
-                          className="p-1.5 rounded bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white transition-colors border border-blue-200"
-                          title="Edit Article"
-                        >
-                          <Edit className="w-4 h-4" />
-                        </Link>
-                        <Link
-                          href={`/how-to/${article.subCategory || 'general'}/${article.slug}`}
-                          target="_blank"
-                          className="p-1.5 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition-colors text-xs font-bold px-2.5 border border-slate-200"
-                          title="Preview Live"
-                        >
-                          Preview
-                        </Link>
-                      </div>
-                    </td>
+            {loading ? (
+              <div className="p-12 text-center text-slate-500 space-y-3">
+                <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto" />
+                <p className="text-sm font-semibold">Loading dashboard overview...</p>
+              </div>
+            ) : (
+              <table className="w-full text-left text-sm text-slate-700">
+                <thead className="text-xs uppercase bg-slate-100/80 text-slate-600 border-b border-slate-200 font-bold">
+                  <tr>
+                    <th className="py-3.5 px-4">Title & Slug</th>
+                    <th className="py-3.5 px-4">Category</th>
+                    <th className="py-3.5 px-4">Sub-Category</th>
+                    <th className="py-3.5 px-4">Status</th>
+                    <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {recentArticles.map((article) => (
+                    <tr key={article.id} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="py-3.5 px-4 max-w-xs">
+                        <div className="font-bold text-slate-900 truncate">{article.title}</div>
+                        <div className="text-xs text-slate-500 font-mono truncate">/{article.slug}</div>
+                      </td>
+                      <td className="py-3.5 px-4 text-xs font-extrabold text-blue-600">
+                        {article.categorySection}
+                      </td>
+                      <td className="py-3.5 px-4 text-xs font-semibold text-slate-600">
+                        <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[11px] font-bold border border-slate-200">
+                          {article.subCategory || 'General'}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-4">
+                        {article.published ? (
+                          <span className="bg-emerald-50 text-emerald-700 text-[10px] font-extrabold px-2 py-0.5 rounded border border-emerald-200 uppercase">
+                            Published
+                          </span>
+                        ) : (
+                          <span className="bg-amber-50 text-amber-700 text-[10px] font-extrabold px-2 py-0.5 rounded border border-amber-200 uppercase">
+                            Draft
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <Link
+                            href={`/admin/articles/${article.id}/edit`}
+                            className="p-1.5 rounded bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white transition-colors border border-blue-200"
+                            title="Edit Article"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Link>
+                          <Link
+                            href={`/how-to/${article.subCategory || 'general'}/${article.slug}`}
+                            target="_blank"
+                            className="p-1.5 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition-colors text-xs font-bold px-2.5 border border-slate-200"
+                            title="Preview Live"
+                          >
+                            Preview
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </main>
