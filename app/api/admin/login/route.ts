@@ -28,7 +28,6 @@ export async function POST(request: NextRequest) {
     if (password && password === adminSecret) {
       const response = NextResponse.json({ success: true, message: 'Authentication successful' });
 
-      // Set HTTP-only secure cookie
       // Determine secure flag: only enforce secure cookie when request is served over HTTPS
       const isHttps = request.headers.get('x-forwarded-proto') === 'https' || request.nextUrl.protocol === 'https:';
 
@@ -37,7 +36,6 @@ export async function POST(request: NextRequest) {
         name: 'admin_token',
         value: 'infomitra_admin_authenticated',
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
         secure: isHttps,
         sameSite: 'lax',
         maxAge: 60 * 60 * 24 * 7, // 7 days
