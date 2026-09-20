@@ -30,6 +30,6 @@ yarn-error.log*
 next-env.d.ts
 
 # SQLite DB
-/prisma/dev.db
+# /prisma/dev.db (committed for Vercel deployment)
 /prisma/dev.db-journal
 .env*
