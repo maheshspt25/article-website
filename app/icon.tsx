@@ -14,6 +14,7 @@ export default function Icon() {
         style={{
           fontSize: 18,
           background: 'linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)',
+          background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -24,6 +25,9 @@ export default function Icon() {
           fontWeight: 900,
           fontFamily: 'sans-serif',
           letterSpacing: '-1px',
+          fontFamily: 'system-ui, sans-serif',
+          letterSpacing: '-0.5px',
+          border: '1px solid rgba(251, 191, 36, 0.4)',
         }}
       >
         IM

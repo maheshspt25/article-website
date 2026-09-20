@@ -80,6 +80,13 @@ export function constructMetadata({
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'google-site-verification-placeholder',
       yandex: 'yandex-verification-placeholder',
     },
+    icons: {
+      icon: [
+        { url: '/icon.svg', type: 'image/svg+xml' },
+        { url: '/icon', type: 'image/png' },
+      ],
+      apple: '/icon',
+    },
   };
 }
 

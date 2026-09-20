@@ -1,0 +1,23 @@
+const fs = require('fs');
+const path = require('path');
+
+// SVG Favicon with Warm Amber gradient and crisp white "IM"
+const svgFavicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#amberGrad)" stroke="#f59e0b" stroke-width="1" />
+  <text x="16" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">IM</text>
+</svg>`;
+
+const publicDir = path.join(__dirname, '..', 'public');
+const appDir = path.join(__dirname, '..', 'app');
+
+fs.writeFileSync(path.join(publicDir, 'icon.svg'), svgFavicon);
+fs.writeFileSync(path.join(appDir, 'icon.svg'), svgFavicon);
+
+console.log('✅ Generated warm amber icon.svg in public/ and app/ directories.');
+
