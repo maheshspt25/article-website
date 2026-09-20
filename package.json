@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "rm -rf .next && next dev",
+    "build": "prisma generate && npx prisma db push --skip-generate && node scratch/seed_all.js && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "node scratch/run_tool_tests.js",
