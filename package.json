@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && npx prisma db push --skip-generate && node scratch/seed_all.js && next build",
+    "dev": "rm -rf .next && next dev",
     "start": "next start",
     "lint": "next lint",
     "test": "node scratch/run_tool_tests.js",

@@ -34,7 +34,7 @@ export default function RootLayout({
         <JsonLd data={orgJsonLd} />
         <JsonLd data={websiteJsonLd} />
       </head>
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900">
+      <body className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 font-sans selection:bg-amber-100 selection:text-amber-900">
         <Header />
         <main className="flex-grow">
           {children}

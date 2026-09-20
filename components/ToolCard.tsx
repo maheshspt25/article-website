@@ -54,31 +54,31 @@ export default function ToolCard({ tool }: ToolCardProps) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="bg-white rounded-lg border border-slate-200/80 p-5 shadow-xs hover:border-slate-300 hover:shadow-card-hover transition-all duration-200 flex flex-col justify-between group"
+      className="bg-white rounded-xl border border-stone-200/90 p-5 shadow-xs hover:border-amber-300 hover:shadow-card-hover transition-all duration-200 flex flex-col justify-between group"
     >
       <div>
         <div className="flex items-center justify-between mb-3">
-          <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors border border-blue-200/80">
+          <div className="w-9 h-9 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-all duration-200 border border-amber-200/80">
             <IconComponent className="w-4 h-4" />
           </div>
           {tool.category && (
-            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200/60 text-slate-600">
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-stone-50 border border-stone-200/70 text-stone-600">
               {tool.category}
             </span>
           )}
         </div>
 
-        <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1.5 leading-snug">
+        <h3 className="text-base font-bold text-stone-900 group-hover:text-amber-700 transition-colors mb-1.5 leading-snug">
           {tool.name}
         </h3>
 
-        <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-3 font-normal">
+        <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed mb-3 font-normal">
           {tool.description}
         </p>
       </div>
 
-      <div className="pt-2 flex items-center text-xs font-bold text-blue-600 group-hover:text-blue-700">
-        Open Tool <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+      <div className="pt-2 flex items-center text-xs font-bold text-amber-700 group-hover:text-amber-800">
+        Launch Tool <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
       </div>
     </Link>
   );

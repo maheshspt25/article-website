@@ -18,13 +18,13 @@ export default async function EntertainmentPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Entertainment', url: '/entertainment' }]} />
 
-      <div className="bg-purple-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
-        <div className="inline-flex items-center gap-1.5 bg-purple-500/20 text-purple-300 border border-purple-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <Film className="w-4 h-4 text-purple-400" />
-          Cinema & OTT Review Desk
+      <div className="bg-white text-stone-900 border border-stone-200/90 rounded-2xl p-6 sm:p-8 space-y-3 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-200/80 text-xs px-3 py-1 rounded-full font-semibold">
+          <Film className="w-4 h-4 text-amber-600" />
+          Cinema &amp; OTT Review Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">Entertainment & OTT Releases</h1>
-        <p className="text-xs sm:text-sm text-purple-200 max-w-2xl">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-stone-900">Entertainment &amp; OTT Releases</h1>
+        <p className="text-xs sm:text-sm text-stone-600 max-w-2xl font-medium leading-relaxed">
           Weekly streaming calendars, box office insights, and verified film reviews.
         </p>
       </div>

@@ -5,7 +5,7 @@
 @layer base {
   body {
     font-family: 'Poppins', 'Inter', sans-serif;
-    @apply bg-[#F8FAFC] text-[#0F172A] antialiased font-sans selection:bg-blue-100 selection:text-blue-900;
+    @apply bg-[#FAF8F5] text-[#1C1917] antialiased font-sans selection:bg-amber-100 selection:text-amber-900;
   }
 }
 
@@ -17,47 +17,47 @@ html, body {
 
 /* Custom Prose styling for editorial articles */
 .article-prose {
-  @apply text-slate-800 text-sm leading-relaxed space-y-4 max-w-full overflow-hidden break-words;
+  @apply text-stone-800 text-sm leading-relaxed space-y-4 max-w-full overflow-hidden break-words;
 }
 
 .article-prose h2 {
-  @apply text-xl font-bold text-slate-900 mt-8 mb-3 pb-2 border-b border-slate-200 scroll-mt-20 break-words;
+  @apply text-xl font-bold text-stone-900 mt-8 mb-3 pb-2 border-b border-stone-200 scroll-mt-20 break-words;
 }
 
 .article-prose h3 {
-  @apply text-base font-bold text-slate-900 mt-6 mb-2 scroll-mt-20 break-words;
+  @apply text-base font-bold text-stone-900 mt-6 mb-2 scroll-mt-20 break-words;
 }
 
 .article-prose p {
-  @apply mb-4 leading-relaxed text-slate-700 break-words;
+  @apply mb-4 leading-relaxed text-stone-700 break-words;
 }
 
 .article-prose ul {
-  @apply list-disc list-inside space-y-1.5 my-4 pl-2 text-slate-700 break-words;
+  @apply list-disc list-inside space-y-1.5 my-4 pl-2 text-stone-700 break-words;
 }
 
 .article-prose ol {
-  @apply list-decimal list-inside space-y-1.5 my-4 pl-2 text-slate-700 break-words;
+  @apply list-decimal list-inside space-y-1.5 my-4 pl-2 text-stone-700 break-words;
 }
 
 .article-prose strong {
-  @apply font-bold text-slate-900;
+  @apply font-bold text-stone-900;
 }
 
 .article-prose a {
-  @apply text-blue-600 underline font-semibold hover:text-blue-800 transition-colors break-all;
+  @apply text-amber-700 underline font-semibold hover:text-amber-800 transition-colors break-all;
 }
 
 .article-prose pre {
-  @apply bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto max-w-full font-mono text-xs sm:text-sm my-6 border border-slate-800 shadow-xs;
+  @apply bg-stone-900 text-stone-100 p-4 rounded-lg overflow-x-auto max-w-full font-mono text-xs sm:text-sm my-6 border border-stone-800 shadow-xs;
 }
 
 .article-prose code {
-  @apply font-mono text-xs text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200/60 break-all;
+  @apply font-mono text-xs text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200/80 break-all;
 }
 
 .article-prose pre code {
-  @apply text-slate-100 bg-transparent p-0 border-0 break-normal whitespace-pre;
+  @apply text-stone-100 bg-transparent p-0 border-0 break-normal whitespace-pre;
 }
 
 .article-prose table {
@@ -65,9 +65,9 @@ html, body {
 }
 
 .article-prose th {
-  @apply bg-slate-100 font-bold p-2.5 border border-slate-300 text-slate-900;
+  @apply bg-stone-100 font-bold p-2.5 border border-stone-300 text-stone-900;
 }
 
 .article-prose td {
-  @apply p-2.5 border border-slate-200 text-slate-700;
+  @apply p-2.5 border border-stone-200 text-stone-700;
 }

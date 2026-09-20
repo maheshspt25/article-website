@@ -27,13 +27,13 @@ export default async function EducationHubPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Education', url: '/education' }]} />
 
-      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 space-y-4 shadow-xs">
-        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
-          <GraduationCap className="w-4 h-4 text-blue-600" />
-          Academic & Career Desk
+      <div className="bg-white text-stone-900 border border-stone-200/90 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-200/80 text-xs px-3 py-1 rounded-full font-semibold">
+          <GraduationCap className="w-4 h-4 text-amber-600" />
+          Academic &amp; Career Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">Education & Scholarships</h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-stone-900">Education &amp; Scholarships</h1>
+        <p className="text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed font-medium">
           Comprehensive updates on national student scholarships, entrance examination blueprints, free online courses, and college guides.
         </p>
 
@@ -42,7 +42,7 @@ export default async function EducationHubPage() {
             <Link
               key={sub.name}
               href={sub.href}
-              className="bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-md text-xs font-medium transition-colors border border-slate-200/80 shadow-xs"
+              className="bg-stone-50 hover:bg-amber-50/60 text-stone-700 hover:text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors border border-stone-200/80 hover:border-amber-300 shadow-xs"
             >
               {sub.name}
             </Link>

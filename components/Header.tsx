@@ -18,39 +18,22 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl text-slate-900 border-b border-slate-200/80 shadow-sm">
-      {/* Top Gradient Stripe */}
-      <div className="h-[3px] bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 w-full"></div>
-
-      {/* Top Banner Notice */}
-      {/* <div className="bg-slate-100/90 text-slate-700 text-xs py-1.5 px-4 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <p className="truncate font-medium">
-            <span className="bg-blue-600 text-white font-extrabold px-1.5 py-0.5 rounded text-[10px] mr-2 uppercase tracking-wide shadow-xs">
-              VERIFIED
-            </span>
-            InfoMitra — India&apos;s Premium Digital Knowledge &amp; Web Utility Portal
-          </p>
-          <div className="hidden md:flex gap-4 text-[11px] text-slate-600 font-medium">
-            <Link href="/about" className="hover:text-blue-600 transition-colors">About Us</Link>
-            <Link href="/editorial-policy" className="hover:text-blue-600 transition-colors">Editorial Policy</Link>
-            <Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
-          </div>
-        </div>
-      </div> */}
+    <header className="sticky top-0 z-50 bg-[#FAF8F5]/95 backdrop-blur-xl text-stone-900 border-b border-stone-200/90 shadow-xs">
+      {/* Top Warm Amber Stripe */}
+      <div className="h-[2px] bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600 w-full"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-bold text-base shadow-xs group-hover:opacity-95 transition-opacity border border-blue-400/20">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-700 text-white flex items-center justify-center font-bold text-base shadow-xs group-hover:opacity-95 transition-opacity border border-amber-400/30">
               IM
             </div>
             <div>
-              <span className="text-xl font-extrabold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
-                Info<span className="text-blue-600">Mitra</span>
+              <span className="text-xl font-extrabold tracking-tight text-stone-900 group-hover:text-amber-700 transition-colors">
+                Info<span className="text-amber-600">Mitra</span>
               </span>
-              <span className="block text-[10px] text-slate-500 font-bold tracking-wider uppercase">
+              <span className="block text-[10px] text-stone-500 font-bold tracking-wider uppercase">
                 Digital Knowledge Hub
               </span>
             </div>
@@ -67,11 +50,11 @@ export default function Header() {
                   href={link.href}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
                     isActive
-                      ? 'bg-blue-50 text-blue-700 border border-blue-200/80'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                      ? 'bg-amber-50 text-amber-900 border border-amber-200/80'
+                      : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-amber-600' : 'text-stone-400'}`} />
                   {link.name}
                 </Link>
               );
@@ -83,14 +66,14 @@ export default function Header() {
             <Link
               href="/search"
               aria-label="Search articles and guides"
-              className="p-2 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded-md transition-colors"
+              className="p-2 text-stone-600 hover:text-amber-700 hover:bg-stone-100 rounded-md transition-colors"
             >
               <Search className="w-4 h-4" />
             </Link>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-md focus:outline-none"
+              className="lg:hidden p-2 text-stone-700 hover:text-stone-900 hover:bg-stone-100 rounded-md focus:outline-none"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -101,7 +84,7 @@ export default function Header() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-6 space-y-1 shadow-sm">
+        <div className="lg:hidden border-t border-stone-200 bg-white px-4 pt-2 pb-6 space-y-1 shadow-sm">
           <div className="grid grid-cols-2 gap-2 pt-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -112,21 +95,21 @@ export default function Header() {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center gap-2 p-2.5 rounded-lg text-xs font-semibold ${
-                    isActive ? 'bg-blue-50 text-blue-700 border border-blue-200/80' : 'text-slate-700 hover:bg-slate-100'
+                    isActive ? 'bg-amber-50 text-amber-900 border border-amber-200/80' : 'text-stone-700 hover:bg-stone-50'
                   }`}
                 >
-                  <Icon className="w-4 h-4 text-blue-600" />
+                  <Icon className="w-4 h-4 text-amber-600" />
                   {link.name}
                 </Link>
               );
             })}
           </div>
 
-          <div className="border-t border-slate-200 pt-4 mt-3 flex flex-wrap gap-4 text-xs text-slate-600 justify-center font-medium">
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">About</Link>
-            <Link href="/editorial-policy" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Editorial Policy</Link>
-            <Link href="/privacy-policy" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Privacy Policy</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Contact Us</Link>
+          <div className="border-t border-stone-200 pt-4 mt-3 flex flex-wrap gap-4 text-xs text-stone-600 justify-center font-medium">
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-700">About</Link>
+            <Link href="/editorial-policy" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-700">Editorial Policy</Link>
+            <Link href="/privacy-policy" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-700">Privacy Policy</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-700">Contact Us</Link>
           </div>
         </div>
       )}

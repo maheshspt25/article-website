@@ -48,13 +48,13 @@ export default async function HowToHubPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'How-To', url: '/how-to' }]} />
 
-      <div className="bg-white text-slate-900 rounded-xl p-6 sm:p-8 space-y-4 shadow-xs border border-slate-200/80">
-        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
-          <HelpCircle className="w-4 h-4 text-blue-600" />
-          Practical Solutions & Verified Tutorials
+      <div className="bg-white text-stone-900 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xs border border-stone-200/90">
+        <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-200/80 text-xs px-3 py-1 rounded-full font-semibold">
+          <HelpCircle className="w-4 h-4 text-amber-600" />
+          Practical Solutions &amp; Verified Tutorials
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">How-To & Practical Step-by-Step Guides</h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-stone-900">How-To &amp; Practical Step-by-Step Guides</h1>
+        <p className="text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed font-medium">
           Tested step-by-step tutorials to solve software glitches, document conversion challenges, operating system tweaks, and network setups.
         </p>
 

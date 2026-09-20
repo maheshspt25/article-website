@@ -18,13 +18,13 @@ export default async function HealthPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Health', url: '/health' }]} />
 
-      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 space-y-3 shadow-xs">
-        <div className="inline-flex items-center gap-1.5 bg-rose-50 text-rose-800 border border-rose-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+      <div className="bg-white text-stone-900 border border-stone-200/90 rounded-2xl p-6 sm:p-8 space-y-3 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-rose-50 text-rose-800 border border-rose-200/80 text-xs px-3 py-1 rounded-full font-semibold">
           <HeartPulse className="w-4 h-4 text-rose-600" />
-          Health & Wellness Information Desk
+          Health &amp; Wellness Information Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900">Health & Fitness</h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-stone-900">Health &amp; Fitness</h1>
+        <p className="text-xs sm:text-sm text-stone-600 max-w-2xl leading-relaxed font-medium">
           Fact-checked articles on nutrition, physical fitness, preventative healthcare, and mental wellness.
         </p>
       </div>

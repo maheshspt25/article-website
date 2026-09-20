@@ -33,24 +33,28 @@ export default async function HomePage() {
   return (
     <div className="space-y-12 pb-16">
       {/* Hero Section Banner */}
-      <section className="bg-gradient-to-b from-slate-100 via-slate-50 to-white text-slate-900 py-14 sm:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-b border-slate-200/80">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      <section className="bg-gradient-to-b from-[#F5F0E8] via-[#FAF8F5] to-[#FAF8F5] text-stone-900 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-b border-stone-200/90">
+        {/* Subtle Warm Amber Dot Matrix */}
+        <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:20px_20px]"></div>
         
+        {/* Warm Ambient Glow Highlight */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-48 bg-gradient-to-r from-amber-200/30 via-orange-100/40 to-amber-200/30 blur-3xl pointer-events-none rounded-full"></div>
+
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200/80 text-blue-800 px-3 py-1 rounded-md text-xs font-semibold shadow-xs">
-            <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-            Practical Digital Guides, Tools & Information
+          <div className="inline-flex items-center gap-2 bg-amber-50/90 border border-amber-200/80 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs backdrop-blur-xs">
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
+            <span>Verified Digital Guides, Calculators & Web Utilities</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-stone-900">
             Smart Knowledge & Instant Tools for <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-stone-800">
               Tech, Finance, Health & Everyday Decisions
             </span>
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
-            Explore expert technology benchmarks, ICMR dietary guidelines, instant tax & EMI calculators, step-by-step how-to tutorials, and free online utilities — 100% free with zero sign-up required.
+          <p className="text-sm sm:text-base text-stone-600 max-w-2xl mx-auto leading-relaxed font-medium">
+            Explore verified technology benchmarks, ICMR dietary guidelines, instant tax & EMI calculators, step-by-step how-to tutorials, and free online utilities — 100% free with zero sign-up required.
           </p>
 
           {/* Search Box Component */}
@@ -59,15 +63,15 @@ export default async function HomePage() {
           </div>
 
           {/* Quick Category Navigation Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-3">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
             {categoryPills.map((pill, idx) => (
               <Link
                 key={idx}
                 href={pill.href}
-                className="inline-flex items-center gap-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 hover:border-slate-300 text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-md text-xs font-medium transition-all shadow-xs"
+                className="group inline-flex items-center gap-1.5 bg-white hover:bg-amber-50/60 border border-stone-200/90 hover:border-amber-300 text-stone-700 hover:text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all shadow-xs"
               >
                 <span>{pill.label}</span>
-                <span className="bg-slate-100 text-slate-600 text-[10px] font-semibold px-1.5 py-0.5 rounded">
+                <span className="bg-stone-100 group-hover:bg-amber-100 text-stone-600 group-hover:text-amber-800 text-[10px] font-semibold px-2 py-0.5 rounded-full transition-colors">
                   {pill.badge}
                 </span>
               </Link>
@@ -79,22 +83,22 @@ export default async function HomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Useful Tools Section */}
-        <section className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 border border-slate-800 shadow-xs relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-            <Sparkles className="w-48 h-48 text-sky-400" />
+        <section className="bg-white rounded-2xl p-6 sm:p-8 border border-stone-200/90 shadow-card relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-8 opacity-[0.07] pointer-events-none text-amber-500">
+            <Sparkles className="w-48 h-48" />
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6 relative z-10">
             <div>
-              <h2 className="text-2xl font-extrabold flex items-center gap-2 text-white">
-                <Wrench className="w-6 h-6 text-sky-400" />
+              <h2 className="text-2xl font-extrabold flex items-center gap-2 text-stone-900">
+                <Wrench className="w-6 h-6 text-amber-600" />
                 Essential Web Utilities & Calculators
               </h2>
-              <p className="text-xs text-slate-400 mt-1 font-normal">Fast, 100% free client-side calculators and file tools. Zero registration required.</p>
+              <p className="text-xs text-stone-600 mt-1 font-medium">Fast, 100% free client-side calculators and file tools. Zero registration required.</p>
             </div>
             <Link
               href="/tools"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors bg-slate-800/80 px-3 py-1.5 rounded-md border border-slate-700"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-800 hover:text-amber-900 transition-colors bg-amber-50 hover:bg-amber-100/80 px-3.5 py-1.5 rounded-lg border border-amber-200/80 shadow-xs"
             >
               Explore All 25 Tools <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -111,15 +115,15 @@ export default async function HomePage() {
         <section>
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
-                <Wallet className="w-6 h-6 text-blue-600" />
+              <h2 className="text-2xl font-extrabold text-stone-900 flex items-center gap-2">
+                <Wallet className="w-6 h-6 text-amber-600" />
                 Finance, Income Tax & Wealth Planning
               </h2>
-              <p className="text-xs text-slate-500 mt-1 font-normal">New vs Old Income Tax Slabs, EPF 8.25%, PPF 7.10%, CIBIL 750+, and RBI Repo Rate guides.</p>
+              <p className="text-xs text-stone-500 mt-1 font-medium">New vs Old Income Tax Slabs, EPF 8.25%, PPF 7.10%, CIBIL 750+, and RBI Repo Rate guides.</p>
             </div>
             <Link
               href="/finance"
-              className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1"
+              className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1"
             >
               Explore Finance <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -136,15 +140,15 @@ export default async function HomePage() {
         <section>
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
+              <h2 className="text-2xl font-extrabold text-stone-900 flex items-center gap-2">
                 <HeartPulse className="w-6 h-6 text-rose-600" />
                 Health, Exercise & ICMR Dietary Guidelines
               </h2>
-              <p className="text-xs text-slate-500 mt-1 font-normal">Evidence-based fitness habits, ICMR dietary guidelines, exercise intensity, and sleep hygiene.</p>
+              <p className="text-xs text-stone-500 mt-1 font-medium">Evidence-based fitness habits, ICMR dietary guidelines, exercise intensity, and sleep hygiene.</p>
             </div>
             <Link
               href="/health"
-              className="text-xs font-semibold text-rose-600 hover:text-rose-800 flex items-center gap-1"
+              className="text-xs font-semibold text-rose-700 hover:text-rose-800 flex items-center gap-1"
             >
               Explore Health <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -163,11 +167,11 @@ export default async function HomePage() {
           {/* Technology Column */}
           <section>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                <Cpu className="w-5 h-5 text-blue-600" />
+              <h2 className="text-xl font-bold text-stone-900 flex items-center gap-2">
+                <Cpu className="w-5 h-5 text-amber-700" />
                 Technology & Hardware Benchmarks
               </h2>
-              <Link href="/technology" className="text-xs font-bold text-blue-600 hover:underline">
+              <Link href="/technology" className="text-xs font-bold text-amber-700 hover:text-amber-800 hover:underline">
                 View All
               </Link>
             </div>
@@ -181,11 +185,11 @@ export default async function HomePage() {
           {/* How-To Column */}
           <section>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-blue-600" />
+              <h2 className="text-xl font-bold text-stone-900 flex items-center gap-2">
+                <HelpCircle className="w-5 h-5 text-amber-600" />
                 Practical Step-by-Step Tutorials
               </h2>
-              <Link href="/how-to" className="text-xs font-bold text-blue-600 hover:underline">
+              <Link href="/how-to" className="text-xs font-bold text-amber-700 hover:text-amber-800 hover:underline">
                 View All
               </Link>
             </div>

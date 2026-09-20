@@ -18,13 +18,13 @@ export default async function ShoppingPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Shopping', url: '/shopping' }]} />
 
-      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
-        <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <ShoppingBag className="w-4 h-4 text-blue-400" />
-          Product Reviews & Buying Desk
+      <div className="bg-white text-stone-900 border border-stone-200/90 rounded-2xl p-6 sm:p-8 space-y-3 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-900 border border-amber-200/80 text-xs px-3 py-1 rounded-full font-semibold">
+          <ShoppingBag className="w-4 h-4 text-amber-600" />
+          Product Reviews &amp; Buying Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">Shopping & Product Buying Guides</h1>
-        <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-stone-900">Shopping &amp; Product Buying Guides</h1>
+        <p className="text-xs sm:text-sm text-stone-600 max-w-2xl font-medium leading-relaxed">
           Curated product comparisons and online shopping advice with verified specifications.
         </p>
       </div>
