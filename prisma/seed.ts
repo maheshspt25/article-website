@@ -86,6 +86,7 @@ async function main() {
     { name: 'Unix Timestamp & Epoch Converter', slug: 'unix-timestamp-converter', category: 'Developer Tools', description: 'Convert Unix epoch timestamps (seconds) to human-readable UTC and local dates in real-time.', icon: 'Clock', isFeatured: true },
     { name: 'Group Bill Splitter & Tip Calculator', slug: 'split-bill-calculator', category: 'Everyday Calculators', description: 'Split restaurant bills, travel expenses, and party costs evenly with tip & discount calculations.', icon: 'Users', isFeatured: true },
     { name: 'Fuel Cost & Mileage Calculator', slug: 'fuel-cost-calculator', category: 'Automobile Tools', description: 'Calculate total trip fuel cost, required fuel liters, and running cost per kilometer for cars and bikes.', icon: 'Fuel', isFeatured: true },
+    { name: 'Image EXIF & Metadata Remover', slug: 'image-metadata-remover', category: 'Image Tools', description: 'Strip camera EXIF data, GPS location, device serial numbers, and AI generation metadata (C2PA) 100% in your browser.', icon: 'ShieldCheck', isFeatured: true },
   ];
 
   for (const tool of toolsData) {

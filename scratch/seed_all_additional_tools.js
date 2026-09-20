@@ -82,6 +82,14 @@ async function main() {
       description: 'Calculate total trip fuel cost, required fuel liters, and running cost per kilometer for cars and bikes.',
       icon: 'Fuel',
       isFeatured: true
+    },
+    {
+      name: 'Image EXIF & Metadata Remover',
+      slug: 'image-metadata-remover',
+      category: 'Image Tools',
+      description: 'Strip camera EXIF data, GPS location, device serial numbers, and AI generation metadata (C2PA) 100% in your browser.',
+      icon: 'ShieldCheck',
+      isFeatured: true
     }
   ];
 

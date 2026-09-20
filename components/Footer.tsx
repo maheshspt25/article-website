@@ -63,6 +63,7 @@ export default function Footer() {
               <li><Link href="/tools/gst-calculator" className="hover:text-amber-700 transition-colors">GST Calculator</Link></li>
               <li><Link href="/tools/salary-calculator" className="hover:text-amber-700 transition-colors">Salary &amp; Tax Calculator</Link></li>
               <li><Link href="/tools/split-bill-calculator" className="hover:text-amber-700 transition-colors">Split Bill Calculator</Link></li>
+              <li><Link href="/tools/image-metadata-remover" className="hover:text-amber-700 transition-colors">Image Metadata Remover</Link></li>
             </ul>
           </div>
 
