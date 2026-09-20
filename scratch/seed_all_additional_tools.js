@@ -90,6 +90,14 @@ async function main() {
       description: 'Strip camera EXIF data, GPS location, device serial numbers, and AI generation metadata (C2PA) 100% in your browser.',
       icon: 'ShieldCheck',
       isFeatured: true
+    },
+    {
+      name: 'Image Metadata & EXIF Viewer',
+      slug: 'image-metadata-viewer',
+      category: 'Image Tools',
+      description: 'Inspect hidden camera EXIF tags, GPS coordinates, device serial numbers, and AI C2PA provenance 100% in your browser.',
+      icon: 'Eye',
+      isFeatured: true
     }
   ];
 

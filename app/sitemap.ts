@@ -22,6 +22,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/health/workout-plans`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: `${baseUrl}/travel`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/tools/image-metadata-viewer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/tools/image-metadata-remover`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/editorial-policy`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/privacy-policy`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
@@ -55,11 +57,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
 
-    return [
-      ...staticRoutes,
-      ...articleRoutes,
-      ...toolRoutes
-    ];
+    const allRoutesMap = new Map<string, MetadataRoute.Sitemap[number]>();
+    [...staticRoutes, ...articleRoutes, ...toolRoutes].forEach((route) => {
+      allRoutesMap.set(route.url, route);
+    });
+
+    return Array.from(allRoutesMap.values());
   } catch (error) {
     console.error('Error generating sitemap:', error);
     return staticRoutes;

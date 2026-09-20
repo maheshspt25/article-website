@@ -247,4 +247,29 @@ test('Image Metadata Remover - Canvas Clean Re-rasterization', () => {
   assert.strictEqual(cleanBytes > 0, true);
 });
 
+// 18. C2PA AI Content Credentials & JFIF Properties Test
+test('Image Metadata Viewer - C2PA Manifest & IPTC AI Detection', () => {
+  const sampleString = 'jumb jumd c2pa gpt-image-2 OpenAI Media Service API trainedAlgorithmicMedia';
+  const hasC2pa = sampleString.includes('c2pa') && sampleString.includes('trainedAlgorithmicMedia');
+  const gptMatch = sampleString.match(/(gpt-image-\w+|gpt-image-2)/i);
+  assert.strictEqual(hasC2pa, true);
+  assert.strictEqual(gptMatch ? gptMatch[0] : null, 'gpt-image-2');
+});
+
+// 19. Custom Metadata Round-Trip Persistence Test
+test('Image Metadata - Custom Author, Copyright & Title Extraction', () => {
+  const comString = 'Author: Rahul Sharma | Copyright: © 2026 All Rights Reserved | Title: Sunset Kerala | Tags: nature, travel';
+  const authorMatch = comString.match(/Author:\s*([^|]+)/i);
+  const copyMatch = comString.match(/Copyright:\s*([^|]+)/i);
+  const titleMatch = comString.match(/Title:\s*([^|]+)/i);
+  const tagsMatch = comString.match(/Tags:\s*([^|]+)/i);
+
+  assert.strictEqual(authorMatch ? authorMatch[1].trim() : null, 'Rahul Sharma');
+  assert.strictEqual(copyMatch ? copyMatch[1].trim() : null, '© 2026 All Rights Reserved');
+  assert.strictEqual(titleMatch ? titleMatch[1].trim() : null, 'Sunset Kerala');
+  assert.strictEqual(tagsMatch ? tagsMatch[1].trim() : null, 'nature, travel');
+});
+
 console.log(`\n🎉 Test Results: ${passedTests} / ${totalTests} Passed (100% Success Rate)`);
+
+

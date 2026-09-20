@@ -44,7 +44,16 @@ interface ToolPageProps {
 export async function generateMetadata({ params }: ToolPageProps) {
   const tools = await getTools();
   const tool = tools.find((t) => t.slug === params.toolSlug);
-  if (!tool) return {};
+  if (!tool) {
+    if (params.toolSlug === 'image-metadata-viewer' || params.toolSlug === 'exif-viewer') {
+      return constructMetadata({
+        title: 'Image Metadata & EXIF Viewer Online - Free Photo Inspector',
+        description: 'Inspect hidden camera EXIF tags, GPS location, device serial numbers, and AI C2PA provenance online in your browser.',
+        path: `/tools/${params.toolSlug}`,
+      });
+    }
+    return {};
+  }
 
   return constructMetadata({
     title: `${tool.name} - Free Online Tool`,
@@ -96,6 +105,8 @@ export default async function DynamicToolPage({ params }: ToolPageProps) {
     'world-clock': <TimezoneConverter />,
     'image-metadata-remover': <ImageMetadataRemover />,
     'exif-remover': <ImageMetadataRemover />,
+    'image-metadata-viewer': <ImageMetadataRemover />,
+    'exif-viewer': <ImageMetadataRemover />,
   };
 
   const ComponentToRender = toolComponents[params.toolSlug];
@@ -116,7 +127,7 @@ export default async function DynamicToolPage({ params }: ToolPageProps) {
           { name: tool ? tool.name : params.toolSlug, url: `/tools/${params.toolSlug}` }
         ]} />
 
-        <div>
+        <div className="w-full min-w-0 overflow-hidden">
           {ComponentToRender || (
             <div className="bg-white rounded-xl border border-slate-200/80 p-8 text-center text-slate-600 font-medium shadow-xs">
               Tool under active maintenance. Select from our popular calculators above.

@@ -87,6 +87,7 @@ async function main() {
     { name: 'Group Bill Splitter & Tip Calculator', slug: 'split-bill-calculator', category: 'Everyday Calculators', description: 'Split restaurant bills, travel expenses, and party costs evenly with tip & discount calculations.', icon: 'Users', isFeatured: true },
     { name: 'Fuel Cost & Mileage Calculator', slug: 'fuel-cost-calculator', category: 'Automobile Tools', description: 'Calculate total trip fuel cost, required fuel liters, and running cost per kilometer for cars and bikes.', icon: 'Fuel', isFeatured: true },
     { name: 'Image EXIF & Metadata Remover', slug: 'image-metadata-remover', category: 'Image Tools', description: 'Strip camera EXIF data, GPS location, device serial numbers, and AI generation metadata (C2PA) 100% in your browser.', icon: 'ShieldCheck', isFeatured: true },
+    { name: 'Image Metadata & EXIF Viewer', slug: 'image-metadata-viewer', category: 'Image Tools', description: 'Inspect hidden camera EXIF tags, GPS coordinates, device serial numbers, and AI C2PA provenance 100% in your browser.', icon: 'Eye', isFeatured: true },
   ];
 
   for (const tool of toolsData) {
