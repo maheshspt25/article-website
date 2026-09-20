@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import exifr from 'exifr';
 import {
   ShieldCheck,
   Upload,
@@ -741,7 +740,8 @@ export default function ImageMetadataRemover() {
 
     let exifrData: any = null;
     try {
-      exifrData = await exifr.parse(file, { tiff: true, xmp: true, icc: true, iptc: true, jfif: true, gps: true });
+      const exifr = await import('exifr');
+      exifrData = await exifr.default.parse(file, { tiff: true, xmp: true, icc: true, iptc: true, jfif: true, gps: true });
     } catch (err) {
       console.warn("exifr parsing failed:", err);
     }
@@ -1180,6 +1180,7 @@ export default function ImageMetadataRemover() {
     } else {
       report['C2PA Content Credentials'] = { status: 'No C2PA manifest found' };
     }
+
     const cameraReport: Record<string, any> = {
       'camera make': metadata.make || 'None',
       'camera model': metadata.model || 'None',
@@ -1212,7 +1213,6 @@ export default function ImageMetadataRemover() {
     }
 
     report['Raw Data'] = {
-      'raw header': metadata.rawHeaderHex.join('\n'),
       'raw header hex': metadata.rawHeaderHex.join('\n'),
     };
 
