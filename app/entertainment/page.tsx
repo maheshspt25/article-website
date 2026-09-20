@@ -18,7 +18,7 @@ export default async function EntertainmentPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Entertainment', url: '/entertainment' }]} />
 
-      <div className="bg-purple-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-purple-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <div className="inline-flex items-center gap-1.5 bg-purple-500/20 text-purple-300 border border-purple-400/30 text-xs px-3 py-1 rounded-full font-semibold">
           <Film className="w-4 h-4 text-purple-400" />
           Cinema & OTT Review Desk

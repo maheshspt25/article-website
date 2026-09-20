@@ -194,17 +194,17 @@ export default function TextToSpeech({ contentHtml = '', articleTitle = '' }: Te
   if (!supported) return null;
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 via-slate-50 to-indigo-50 border border-blue-200/80 rounded-2xl p-4 sm:p-5 shadow-xs my-6 space-y-3">
+    <div className="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 sm:p-5 shadow-xs my-6 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-sm">
-            <Volume2 className={`w-5 h-5 ${speaking ? 'animate-pulse' : ''}`} />
+          <div className="w-8 h-8 rounded-md bg-blue-600 text-white flex items-center justify-center shadow-xs">
+            <Volume2 className={`w-4 h-4 ${speaking ? 'animate-pulse' : ''}`} />
           </div>
           <div>
-            <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               Listen to Article (Audio Reader)
             </h3>
-            <p className="text-xs text-slate-500 font-medium">
+            <p className="text-xs text-slate-500 font-normal">
               {speaking
                 ? `🔊 Playing section ${currentChunkIdxRef.current + 1} of ${chunksRef.current.length}...`
                 : paused
@@ -219,19 +219,19 @@ export default function TextToSpeech({ contentHtml = '', articleTitle = '' }: Te
           {!speaking || paused ? (
             <button
               onClick={handlePlay}
-              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3.5 py-1.5 rounded-md transition-all shadow-xs active:scale-95"
               aria-label="Play Audio Narration"
             >
-              <Play className="w-4 h-4 fill-current" />
+              <Play className="w-3.5 h-3.5 fill-current" />
               {paused ? 'Resume' : 'Listen'}
             </button>
           ) : (
             <button
               onClick={handlePause}
-              className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold px-3.5 py-1.5 rounded-md transition-all shadow-xs active:scale-95"
               aria-label="Pause Audio Narration"
             >
-              <Pause className="w-4 h-4 fill-current" />
+              <Pause className="w-3.5 h-3.5 fill-current" />
               Pause
             </button>
           )}
@@ -239,22 +239,22 @@ export default function TextToSpeech({ contentHtml = '', articleTitle = '' }: Te
           {(speaking || paused) && (
             <button
               onClick={handleStop}
-              className="inline-flex items-center gap-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-3 py-2 rounded-xl transition-all active:scale-95"
+              className="inline-flex items-center gap-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-md transition-all active:scale-95"
               aria-label="Stop Audio Narration"
             >
-              <Square className="w-3.5 h-3.5 fill-current text-slate-700" />
+              <Square className="w-3 h-3 fill-current text-slate-700" />
               Stop
             </button>
           )}
 
           {/* Speed Rate Toggle Buttons */}
-          <div className="hidden sm:flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1 text-xs shadow-xs">
+          <div className="hidden sm:flex items-center gap-1 bg-white border border-slate-200/80 rounded-md p-0.5 text-xs shadow-xs">
             <Gauge className="w-3.5 h-3.5 text-slate-400 ml-1" />
             {[1.0, 1.25, 1.5].map((s) => (
               <button
                 key={s}
                 onClick={() => handleRateChange(s)}
-                className={`px-2 py-0.5 rounded-lg font-bold text-[11px] transition-colors ${
+                className={`px-2 py-0.5 rounded font-semibold text-[11px] transition-colors ${
                   rate === s ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >

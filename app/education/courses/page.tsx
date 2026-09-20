@@ -20,7 +20,7 @@ export default async function CoursesPage() {
         { name: 'Courses', url: '/education/courses' }
       ]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6">
+      <div className="bg-slate-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Courses & Skill Certifications</h1>
         <p className="text-xs sm:text-sm text-slate-300 mt-1">Recommended free and university-accredited online learning programs.</p>
       </div>

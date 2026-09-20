@@ -118,7 +118,7 @@ export default async function DynamicToolPage({ params }: ToolPageProps) {
 
         <div>
           {ComponentToRender || (
-            <div className="bg-white rounded-2xl border border-zinc-200 p-8 text-center text-zinc-600 font-medium">
+            <div className="bg-white rounded-xl border border-slate-200/80 p-8 text-center text-slate-600 font-medium shadow-xs">
               Tool under active maintenance. Select from our popular calculators above.
             </div>
           )}

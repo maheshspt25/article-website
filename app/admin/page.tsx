@@ -50,7 +50,7 @@ export default function AdminDashboardPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Welcome Banner */}
-        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md border border-blue-600/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white p-6 sm:p-8 rounded-xl shadow-xs border border-blue-600/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="bg-white/20 text-white text-xs font-extrabold px-3 py-1 rounded-full border border-white/30 uppercase tracking-wider flex items-center gap-1.5 backdrop-blur-xs">
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/admin/articles/new"
-              className="inline-flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-900 font-extrabold px-5 py-3 rounded-xl text-sm shadow-md transition-all border border-white/40"
+              className="inline-flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-900 font-extrabold px-5 py-3 rounded-xl text-sm shadow-xs transition-all border border-white/40"
             >
               <PlusCircle className="w-4 h-4 text-blue-700" />
               Create New Article
@@ -78,7 +78,7 @@ export default function AdminDashboardPage() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-5 space-y-3 shadow-xs">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">Total Articles</span>
               <FileText className="w-5 h-5 text-blue-600" />
@@ -89,7 +89,7 @@ export default function AdminDashboardPage() {
             <div className="text-xs text-slate-500 font-medium">Across all sections</div>
           </div>
 
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-5 space-y-3 shadow-xs">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">How-To Guides</span>
               <Layers className="w-5 h-5 text-indigo-600" />
@@ -100,7 +100,7 @@ export default function AdminDashboardPage() {
             <div className="text-xs text-slate-500 font-medium">25 Sub-categories active</div>
           </div>
 
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-5 space-y-3 shadow-xs">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">Published Status</span>
               <CheckCircle className="w-5 h-5 text-emerald-600" />
@@ -111,7 +111,7 @@ export default function AdminDashboardPage() {
             <div className="text-xs text-slate-500 font-medium">Live on search engines</div>
           </div>
 
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-5 space-y-3 shadow-xs">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">Sub-Categories</span>
               <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Quick Table Header */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs space-y-4 p-6">
+        <div className="bg-white border border-slate-200/90 rounded-xl overflow-hidden shadow-xs space-y-4 p-6">
           <div className="flex items-center justify-between border-b border-slate-200 pb-4">
             <div>
               <h2 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">

@@ -67,7 +67,7 @@ export default function PasswordGenerator() {
   }
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -80,7 +80,7 @@ export default function PasswordGenerator() {
       </div>
 
       {/* Generated Password Box */}
-      <div className="bg-slate-900 text-white rounded-2xl p-6 space-y-4 shadow-md">
+      <div className="bg-slate-900 text-white rounded-lg p-6 space-y-4 shadow-xs">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Generated Password</span>
           <span className="text-xs font-bold text-slate-300 font-mono">Entropy: {entropy} Bits</span>
@@ -123,7 +123,7 @@ export default function PasswordGenerator() {
       </div>
 
       {/* Options Controls */}
-      <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 space-y-4">
+      <div className="bg-zinc-50 border border-zinc-200 rounded-lg p-5 space-y-4">
         <div>
           <div className="flex justify-between text-xs font-bold text-zinc-900 mb-2">
             <span>Password Length:</span>

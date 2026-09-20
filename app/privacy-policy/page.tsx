@@ -13,12 +13,12 @@ export default function PrivacyPolicyPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Privacy Policy', url: '/privacy-policy' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold">Privacy Policy</h1>
         <p className="text-xs text-slate-400">Last updated: August 2026</p>
       </div>
 
-      <div className="article-prose bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6">
+      <div className="article-prose bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6">
         <h2>1. Client-Side Data Privacy</h2>
         <p>
           InfoMitra is designed to be accessible without requiring user registration. We do not store personal financial data, photos, or documents processed through our client-side utility tools (such as Age Calculator, Image Compressor, or GST Calculator). All computations execute locally inside your web browser.

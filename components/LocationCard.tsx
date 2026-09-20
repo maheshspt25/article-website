@@ -16,7 +16,7 @@ export default function LocationCard({ location }: LocationCardProps) {
   return (
     <Link
       href={`/jobs/location/${location.slug}`}
-      className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-md hover:border-blue-400 transition-all flex items-center justify-between group"
+      className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-xs hover:border-blue-400 transition-all flex items-center justify-between group"
     >
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 rounded-full bg-slate-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">

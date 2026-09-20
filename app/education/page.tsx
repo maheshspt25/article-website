@@ -27,13 +27,13 @@ export default async function EducationHubPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Education', url: '/education' }]} />
 
-      <div className="bg-blue-900 text-white rounded-2xl p-6 sm:p-8 space-y-4">
-        <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <GraduationCap className="w-4 h-4 text-blue-400" />
+      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+          <GraduationCap className="w-4 h-4 text-blue-600" />
           Academic & Career Desk
         </div>
         <h1 className="text-2xl sm:text-4xl font-extrabold">Education & Scholarships</h1>
-        <p className="text-xs sm:text-sm text-blue-200 max-w-2xl">
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
           Comprehensive updates on national student scholarships, entrance examination blueprints, free online courses, and college guides.
         </p>
 
@@ -42,7 +42,7 @@ export default async function EducationHubPage() {
             <Link
               key={sub.name}
               href={sub.href}
-              className="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+              className="bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-md text-xs font-medium transition-colors border border-slate-200/80 shadow-xs"
             >
               {sub.name}
             </Link>

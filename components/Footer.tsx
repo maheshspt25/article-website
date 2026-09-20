@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-600 text-white font-black flex items-center justify-center text-lg shadow-md shadow-blue-500/20 border border-blue-400/20">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-bold flex items-center justify-center text-base shadow-xs border border-blue-400/20">
                 IM
               </div>
               <span className="text-xl font-extrabold tracking-tight text-white">

@@ -27,7 +27,7 @@ export default function EmiCalculator() {
   const interestPercent = 100 - principalPercent;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm max-w-3xl mx-auto">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm max-w-3xl mx-auto">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
         <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
           <Calculator className="w-6 h-6" />

@@ -33,7 +33,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Search', url: '/search' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-4">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-4">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-center">Search Information Portal</h1>
         <SearchBox placeholder="Search jobs, exams, technology, finance, guides..." autoFocus size="lg" />
       </div>

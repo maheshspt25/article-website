@@ -14,12 +14,12 @@ export default function DisclaimerPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Disclaimer', url: '/disclaimer' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold">Official Disclaimer</h1>
         <p className="text-xs text-slate-300">Important Information Regarding Platform Content</p>
       </div>
 
-      <div className="article-prose bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6">
+      <div className="article-prose bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6">
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3 not-prose">
           <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
           <div>

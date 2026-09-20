@@ -23,7 +23,7 @@ export default function SipCalculator() {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm max-w-3xl mx-auto">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm max-w-3xl mx-auto">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
         <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
           <TrendingUp className="w-6 h-6" />

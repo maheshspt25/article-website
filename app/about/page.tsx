@@ -14,14 +14,14 @@ export default function AboutPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'About Us', url: '/about' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-3">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-3">
         <h1 className="text-2xl sm:text-4xl font-extrabold">About InfoMitra</h1>
         <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
           India&apos;s leading SEO-first information platform delivering verified tech comparisons, practical guides, financial resources, and utility tools.
         </p>
       </div>
 
-      <div className="article-prose bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6">
+      <div className="article-prose bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6">
         <h2>Our Mission</h2>
         <p>
           InfoMitra was built to solve a major problem on the Indian web: noisy, keyword-stuffed clickbait sites that duplicate outdated notices and present fake information to readers.

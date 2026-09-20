@@ -106,7 +106,7 @@ export default function AdminArticlesListPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Header Title */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-6 rounded-xl border border-slate-200/90 shadow-xs">
           <div>
             <h1 className="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
               <FileText className="w-6 h-6 text-blue-600" /> Articles Manager
@@ -118,14 +118,14 @@ export default function AdminArticlesListPage() {
 
           <Link
             href="/admin/articles/new"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-sm shadow-md transition-all border border-blue-500/30"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-sm shadow-xs transition-all border border-blue-500/30"
           >
             <PlusCircle className="w-4 h-4" /> Add New Article
           </Link>
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col md:flex-row items-center gap-4 justify-between">
+        <div className="bg-white p-4 rounded-xl border border-slate-200/90 shadow-xs flex flex-col md:flex-row items-center gap-4 justify-between">
           <form onSubmit={handleSearchSubmit} className="relative w-full md:w-96">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
             <input
@@ -164,7 +164,7 @@ export default function AdminArticlesListPage() {
         </div>
 
         {/* Table View */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
+        <div className="bg-white border border-slate-200/90 rounded-xl overflow-hidden shadow-xs">
           {loading ? (
             <div className="p-12 text-center text-slate-500 space-y-3">
               <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto" />

@@ -20,7 +20,7 @@ export default async function ExamDatesPage() {
         { name: 'Exam Dates', url: '/jobs/exam-dates' }
       ]} />
 
-      <div className="bg-indigo-900 text-white rounded-2xl p-6">
+      <div className="bg-indigo-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Upcoming Exam Dates & Timetable 2026</h1>
         <p className="text-xs sm:text-sm text-indigo-200 mt-1">Computer Based Test (CBT) schedules, Prelims & Mains exam calendars.</p>
       </div>

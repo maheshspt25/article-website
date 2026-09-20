@@ -46,7 +46,7 @@ export default async function TravelDetailCatPage({ params }: ArticlePageProps) 
           { name: article.title, url: `/travel/${params.category}/${article.slug}` }
         ]} />
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-4">
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <span className="bg-sky-100 text-sky-800 font-bold px-2.5 py-0.5 rounded uppercase">
               {article.subCategory || article.categorySection}
@@ -73,7 +73,7 @@ export default async function TravelDetailCatPage({ params }: ArticlePageProps) 
           </p>
         </div>
 
-        <article className="article-prose bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
+        <article className="article-prose bg-white rounded-xl border border-slate-200 p-6 sm:p-8">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
           {/* <AdSlot slotId="travel-detail-ad" /> */}
         </article>

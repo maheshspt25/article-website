@@ -20,7 +20,7 @@ export default async function ScholarshipsPage() {
         { name: 'Scholarships', url: '/education/scholarships' }
       ]} />
 
-      <div className="bg-blue-900 text-white rounded-2xl p-6">
+      <div className="bg-blue-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Government & Merit Scholarships</h1>
         <p className="text-xs sm:text-sm text-blue-200 mt-1">National Scholarship Portal (NSP) schemes, eligibility, and online application guidelines.</p>
       </div>

@@ -20,7 +20,7 @@ export default async function FinanceLoansPage() {
         { name: 'Loans', url: '/finance/loans' }
       ]} />
 
-      <div className="bg-emerald-900 text-white rounded-2xl p-6">
+      <div className="bg-emerald-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Bank Loans & Credit Interest Rates</h1>
         <p className="text-xs sm:text-sm text-emerald-200 mt-1">Home loan, personal loan, and collateral-free education loan guides.</p>
       </div>

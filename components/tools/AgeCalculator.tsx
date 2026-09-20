@@ -56,7 +56,7 @@ export default function AgeCalculator() {
   const res = calculateAge();
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm max-w-2xl mx-auto">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm max-w-2xl mx-auto">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
         <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
           <Calendar className="w-6 h-6" />
@@ -94,7 +94,7 @@ export default function AgeCalculator() {
         </div>
       ) : res ? (
         <div className="space-y-4">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl p-5 text-center shadow-md">
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl p-5 text-center shadow-xs">
             <span className="text-xs font-medium uppercase tracking-wider text-blue-100">Your Current Age</span>
             <div className="text-3xl font-extrabold mt-1">
               {res.years} <span className="text-base font-normal">Years</span>, {res.months} <span className="text-base font-normal">Months</span>, {res.days} <span className="text-base font-normal">Days</span>

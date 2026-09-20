@@ -71,7 +71,7 @@ export default function TextCaseConverter() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -98,7 +98,7 @@ export default function TextCaseConverter() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Paste or type text to convert..."
-          className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-medium text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed font-mono"
+          className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-medium text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed font-mono"
         />
         <div className="flex items-center justify-between text-xs text-zinc-500 font-bold px-1">
           <span>Words: <strong>{words}</strong></span>

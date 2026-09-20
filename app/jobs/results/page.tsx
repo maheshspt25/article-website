@@ -20,7 +20,7 @@ export default async function ResultsPage() {
         { name: 'Results', url: '/jobs/results' }
       ]} />
 
-      <div className="bg-emerald-900 text-white rounded-2xl p-6">
+      <div className="bg-emerald-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Exam Results & Scorecard Updates</h1>
         <p className="text-xs sm:text-sm text-emerald-200 mt-1">Official result links, cut-off marks, and candidate merit list rankings.</p>
       </div>

@@ -32,7 +32,7 @@ export default function SeoMetaGenerator() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -53,7 +53,7 @@ export default function SeoMetaGenerator() {
       </div>
 
       {/* Google SERP Snippet Live Preview */}
-      <div className="bg-white border border-zinc-200 rounded-2xl p-6 space-y-2 shadow-xs">
+      <div className="bg-white border border-zinc-200 rounded-lg p-6 space-y-2 shadow-xs">
         <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider flex items-center gap-1">
           <Eye className="w-4 h-4 text-blue-600" /> Google Search Engine SERP Snippet Live Preview
         </span>
@@ -72,7 +72,7 @@ export default function SeoMetaGenerator() {
       </div>
 
       {/* Inputs */}
-      <div className="space-y-4 bg-zinc-50 border border-zinc-200 rounded-2xl p-5">
+      <div className="space-y-4 bg-zinc-50 border border-zinc-200 rounded-lg p-5">
         <div>
           <div className="flex justify-between text-xs font-bold text-zinc-700 mb-1">
             <span>Meta Title Tag ({title.length} / 60 Chars)</span>

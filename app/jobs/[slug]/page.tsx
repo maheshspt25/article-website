@@ -90,7 +90,7 @@ export default async function JobDetailPage({ params }: JobPageProps) {
         ]} />
 
         {/* Article Header Card */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-md bg-blue-100 text-blue-800">
               <Building2 className="w-3.5 h-3.5" /> {job.organization}
@@ -140,7 +140,7 @@ export default async function JobDetailPage({ params }: JobPageProps) {
         <TableOfContents items={tocItems} />
 
         {/* Content Sections */}
-        <article className="article-prose space-y-8 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
+        <article className="article-prose space-y-8 bg-white rounded-xl border border-slate-200 p-6 sm:p-8">
           
           {/* Overview */}
           <section id="overview">
@@ -241,7 +241,7 @@ export default async function JobDetailPage({ params }: JobPageProps) {
           {/* <AdSlot slotId="job-detail-inside-ad" /> */}
 
           {/* Official Notification & Application Links */}
-          <section id="official-links" className="bg-slate-900 text-white rounded-2xl p-6 space-y-4">
+          <section id="official-links" className="bg-slate-900 text-white rounded-xl p-6 space-y-4">
             <h2 className="text-xl font-bold flex items-center gap-2 text-white border-b border-slate-800 pb-3">
               <ExternalLink className="w-5 h-5 text-amber-400" /> Official Links & Application Portals
             </h2>

@@ -48,7 +48,7 @@ export default async function ShoppingDetailCatPage({ params }: ArticlePageProps
         ]} />
 
         {/* Header */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-4">
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <span className="bg-blue-100 text-blue-800 font-bold px-2.5 py-0.5 rounded uppercase">
               {article.subCategory || article.categorySection}
@@ -78,7 +78,7 @@ export default async function ShoppingDetailCatPage({ params }: ArticlePageProps
         </div>
 
         {/* Article Body */}
-        <article className="article-prose bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
+        <article className="article-prose bg-white rounded-xl border border-slate-200 p-6 sm:p-8">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
           {/* <AdSlot slotId="shopping-detail-ad" /> */}
         </article>

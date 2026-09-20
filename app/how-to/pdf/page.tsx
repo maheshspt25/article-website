@@ -20,7 +20,7 @@ export default async function HowToPdfPage() {
         { name: 'PDF', url: '/how-to/pdf' }
       ]} />
 
-      <div className="bg-red-900 text-white rounded-2xl p-6">
+      <div className="bg-red-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">PDF Documents & Conversion Guides</h1>
         <p className="text-xs sm:text-sm text-red-200 mt-1">Easy document conversion solutions for official job applications.</p>
       </div>

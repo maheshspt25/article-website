@@ -59,7 +59,7 @@ export default function PomodoroTimer() {
   const progressPercent = ((modeDurations[mode] - timeLeft) / modeDurations[mode]) * 100;
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -76,11 +76,11 @@ export default function PomodoroTimer() {
       </div>
 
       {/* Mode Switches */}
-      <div className="flex items-center justify-center gap-2 bg-zinc-100 p-1.5 rounded-2xl">
+      <div className="flex items-center justify-center gap-2 bg-zinc-100 p-1.5 rounded-lg">
         <button
           onClick={() => handleModeChange('work')}
           className={`flex-1 py-2 text-xs font-extrabold rounded-xl transition-all ${
-            mode === 'work' ? 'bg-blue-600 text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'
+            mode === 'work' ? 'bg-blue-600 text-white shadow-xs' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
           Deep Focus (25m)
@@ -89,7 +89,7 @@ export default function PomodoroTimer() {
         <button
           onClick={() => handleModeChange('shortBreak')}
           className={`flex-1 py-2 text-xs font-extrabold rounded-xl transition-all ${
-            mode === 'shortBreak' ? 'bg-emerald-600 text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'
+            mode === 'shortBreak' ? 'bg-emerald-600 text-white shadow-xs' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
           Short Break (5m)
@@ -98,7 +98,7 @@ export default function PomodoroTimer() {
         <button
           onClick={() => handleModeChange('longBreak')}
           className={`flex-1 py-2 text-xs font-extrabold rounded-xl transition-all ${
-            mode === 'longBreak' ? 'bg-purple-600 text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'
+            mode === 'longBreak' ? 'bg-purple-600 text-white shadow-xs' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
           Long Break (15m)
@@ -106,7 +106,7 @@ export default function PomodoroTimer() {
       </div>
 
       {/* Main Timer Display */}
-      <div className="bg-slate-900 text-white rounded-3xl p-8 text-center space-y-6 shadow-xl relative overflow-hidden">
+      <div className="bg-slate-900 text-white rounded-xl p-8 text-center space-y-6 shadow-xs relative overflow-hidden">
         {/* Top bar progress */}
         <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
           <div
@@ -128,7 +128,7 @@ export default function PomodoroTimer() {
         <div className="flex items-center justify-center gap-4 pt-2">
           <button
             onClick={toggleTimer}
-            className={`inline-flex items-center gap-2 font-extrabold px-8 py-3.5 rounded-2xl text-base shadow-lg transition-all border ${
+            className={`inline-flex items-center gap-2 font-extrabold px-8 py-3.5 rounded-lg text-base shadow-sm transition-all border ${
               isRunning
                 ? 'bg-amber-500 hover:bg-amber-600 text-white border-amber-400/40'
                 : 'bg-blue-600 hover:bg-blue-500 text-white border-blue-400/40'
@@ -140,7 +140,7 @@ export default function PomodoroTimer() {
 
           <button
             onClick={resetTimer}
-            className="p-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-2xl border border-slate-700 transition-colors"
+            className="p-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg border border-slate-700 transition-colors"
             title="Reset Timer"
           >
             <RotateCcw className="w-5 h-5" />

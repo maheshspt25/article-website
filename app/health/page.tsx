@@ -18,21 +18,21 @@ export default async function HealthPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Health', url: '/health' }]} />
 
-      <div className="bg-rose-950 text-white rounded-2xl p-6 sm:p-8 space-y-2">
-        <div className="inline-flex items-center gap-1.5 bg-rose-500/20 text-rose-300 border border-rose-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <HeartPulse className="w-4 h-4 text-rose-400" />
+      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 space-y-3 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-rose-50 text-rose-800 border border-rose-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+          <HeartPulse className="w-4 h-4 text-rose-600" />
           Health & Wellness Information Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">Health & Fitness</h1>
-        <p className="text-xs sm:text-sm text-rose-200 max-w-2xl">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900">Health & Fitness</h1>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
           Fact-checked articles on nutrition, physical fitness, preventative healthcare, and mental wellness.
         </p>
       </div>
 
-      <div className="bg-amber-50 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3">
+      <div className="bg-amber-50/70 border border-amber-200/80 rounded-lg p-4 text-xs text-amber-900 flex items-start gap-3 shadow-xs">
         <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
         <div>
-          <strong className="font-bold block mb-0.5">Medical Information Disclaimer:</strong>
+          <strong className="font-semibold block mb-0.5">Medical Information Disclaimer:</strong>
           Health content on InfoMitra is for general educational purposes only and should not replace professional medical advice or diagnosis.
         </div>
       </div>

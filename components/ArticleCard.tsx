@@ -26,15 +26,15 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   const articlePath = `/${article.categorySection}/${article.subCategory || 'general'}/${article.slug}`;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-between group">
+    <div className="bg-white rounded-lg border border-slate-200/80 p-5 shadow-xs hover:border-slate-300 hover:shadow-card-hover transition-all duration-200 flex flex-col justify-between group">
       <div>
         {/* Category Badge */}
         <div className="flex items-center gap-2 mb-3">
           <Link
             href={categoryPath}
-            className="inline-flex items-center gap-1 text-[11px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-800 border border-blue-200/80 hover:bg-blue-100 transition-colors"
+            className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md bg-slate-50 text-slate-700 border border-slate-200/80 hover:bg-slate-100 hover:text-blue-600 transition-colors"
           >
-            <Tag className="w-3 h-3 text-blue-600" />
+            <Tag className="w-3 h-3 text-slate-400 group-hover:text-blue-500" />
             {article.subCategory || article.categorySection}
           </Link>
           {article.readingTime && (

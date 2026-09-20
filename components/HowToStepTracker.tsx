@@ -56,7 +56,7 @@ export default function HowToStepTracker({ steps, articleSlug }: HowToStepTracke
   const progressPercentage = Math.round((completedSteps.length / steps.length) * 100);
 
   return (
-    <div className="my-8 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
+    <div className="my-8 bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
         <div>
           <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
@@ -80,7 +80,7 @@ export default function HowToStepTracker({ steps, articleSlug }: HowToStepTracke
           {completedSteps.length > 0 && (
             <button
               onClick={resetProgress}
-              className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition-colors"
+              className="p-1.5 text-slate-400 hover:text-slate-600 rounded-md hover:bg-slate-100 transition-colors"
               title="Reset step progress"
             >
               <RefreshCw className="w-4 h-4" />
@@ -96,7 +96,7 @@ export default function HowToStepTracker({ steps, articleSlug }: HowToStepTracke
             <div
               key={item.step}
               onClick={() => toggleStep(item.step)}
-              className={`p-4 rounded-xl border transition-all cursor-pointer flex items-start gap-3.5 ${
+              className={`p-4 rounded-lg border transition-all cursor-pointer flex items-start gap-3.5 ${
                 isDone
                   ? 'bg-blue-50/60 border-blue-200/80 text-slate-800 shadow-xs'
                   : 'bg-slate-50/50 border-slate-200/60 hover:bg-white hover:border-slate-300'
@@ -116,7 +116,7 @@ export default function HowToStepTracker({ steps, articleSlug }: HowToStepTracke
 
               <div>
                 <div className="flex items-center gap-2">
-                  <span className={`text-xs font-extrabold uppercase px-2 py-0.5 rounded ${isDone ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-700'}`}>
+                  <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md ${isDone ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-700'}`}>
                     Step {item.step}
                   </span>
                   <h4 className={`text-sm font-bold ${isDone ? 'text-blue-900 line-through' : 'text-slate-900'}`}>

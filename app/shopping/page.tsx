@@ -18,7 +18,7 @@ export default async function ShoppingPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Shopping', url: '/shopping' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
           <ShoppingBag className="w-4 h-4 text-blue-400" />
           Product Reviews & Buying Desk

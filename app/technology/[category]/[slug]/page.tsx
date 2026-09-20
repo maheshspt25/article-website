@@ -77,29 +77,29 @@ export default async function TechArticlePage({ params }: TechArticlePageProps) 
         ]} />
 
         {/* Header */}
-        <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-4 shadow-sm">
-          <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-500 font-medium">
-            <span className="bg-indigo-50 text-indigo-800 font-bold px-2.5 py-0.5 rounded uppercase">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 space-y-4 shadow-xs">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 font-medium">
+            <span className="bg-slate-100 text-slate-700 font-semibold px-2.5 py-0.5 rounded-md uppercase border border-slate-200/80">
               {article.subCategory || article.categorySection}
             </span>
             <span className="flex items-center gap-1">
-              <User className="w-3.5 h-3.5" /> {article.author?.name || 'InfoMitra Tech Desk'}
+              <User className="w-3.5 h-3.5 text-slate-400" /> {article.author?.name || 'InfoMitra Tech Desk'}
             </span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" /> Published {new Date(article.createdAt).toLocaleDateString('en-IN')}
+              <Calendar className="w-3.5 h-3.5 text-slate-400" /> Published {new Date(article.createdAt).toLocaleDateString('en-IN')}
             </span>
             {article.readingTime && (
-              <span className="flex items-center gap-1 text-zinc-400">
+              <span className="flex items-center gap-1 text-slate-400">
                 <Clock className="w-3.5 h-3.5" /> {article.readingTime}
               </span>
             )}
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 leading-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
             {article.title}
           </h1>
 
-          <p className="text-sm text-zinc-600 leading-relaxed font-medium bg-zinc-50 p-4 rounded-xl border border-zinc-200/80">
+          <p className="text-sm text-slate-600 leading-relaxed font-normal bg-slate-50 p-4 rounded-lg border border-slate-200/80">
             {article.summary}
           </p>
 
@@ -108,26 +108,26 @@ export default async function TechArticlePage({ params }: TechArticlePageProps) 
 
         {/* Side-by-side comparison table if present */}
         {comparisonData && (
-          <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-6 shadow-sm">
-            <h2 className="text-xl font-bold text-zinc-900 border-b pb-3">
+          <div className="bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 space-y-6 shadow-xs">
+            <h2 className="text-xl font-bold text-slate-900 border-b border-slate-200/80 pb-3">
               Side-by-Side Specifications Comparison
             </h2>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr className="bg-zinc-950 text-white">
-                    <th className="p-3 border border-zinc-800">Feature</th>
-                    <th className="p-3 border border-zinc-800">{comparisonData.item1}</th>
-                    <th className="p-3 border border-zinc-800">{comparisonData.item2}</th>
+                  <tr className="bg-slate-900 text-white">
+                    <th className="p-3 border border-slate-800">Feature</th>
+                    <th className="p-3 border border-slate-800">{comparisonData.item1}</th>
+                    <th className="p-3 border border-slate-800">{comparisonData.item2}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonData.rows?.map((row: any, idx: number) => (
-                    <tr key={idx} className={idx % 2 === 0 ? 'bg-zinc-50' : 'bg-white'}>
-                      <td className="p-3 border border-zinc-200 font-bold text-zinc-900">{row.feature}</td>
-                      <td className="p-3 border border-zinc-200 text-zinc-800 font-medium">{row.val1}</td>
-                      <td className="p-3 border border-zinc-200 text-zinc-800 font-medium">{row.val2}</td>
+                    <tr key={idx} className={idx % 2 === 0 ? 'bg-slate-50' : 'bg-white'}>
+                      <td className="p-3 border border-slate-200 font-semibold text-slate-900">{row.feature}</td>
+                      <td className="p-3 border border-slate-200 text-slate-700 font-normal">{row.val1}</td>
+                      <td className="p-3 border border-slate-200 text-slate-700 font-normal">{row.val2}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -135,18 +135,18 @@ export default async function TechArticlePage({ params }: TechArticlePageProps) 
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 space-y-2">
-                <h3 className="font-bold text-emerald-950 flex items-center gap-1.5 text-sm">
+              <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-lg p-4 space-y-2 shadow-xs">
+                <h3 className="font-semibold text-emerald-950 flex items-center gap-1.5 text-sm">
                   <ThumbsUp className="w-4 h-4 text-emerald-600" /> Who Should Buy {comparisonData.item1}?
                 </h3>
-                <p className="text-emerald-900 leading-relaxed">{comparisonData.whoShouldBuy1}</p>
+                <p className="text-emerald-900 leading-relaxed text-xs">{comparisonData.whoShouldBuy1}</p>
               </div>
 
-              <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 space-y-2">
-                <h3 className="font-bold text-indigo-950 flex items-center gap-1.5 text-sm">
-                  <ThumbsUp className="w-4 h-4 text-indigo-600" /> Who Should Buy {comparisonData.item2}?
+              <div className="bg-blue-50/70 border border-blue-200/80 rounded-lg p-4 space-y-2 shadow-xs">
+                <h3 className="font-semibold text-blue-950 flex items-center gap-1.5 text-sm">
+                  <ThumbsUp className="w-4 h-4 text-blue-600" /> Who Should Buy {comparisonData.item2}?
                 </h3>
-                <p className="text-indigo-900 leading-relaxed">{comparisonData.whoShouldBuy2}</p>
+                <p className="text-blue-900 leading-relaxed text-xs">{comparisonData.whoShouldBuy2}</p>
               </div>
             </div>
           </div>
@@ -156,7 +156,7 @@ export default async function TechArticlePage({ params }: TechArticlePageProps) 
         <TextToSpeech articleTitle={article.title} contentHtml={article.content} />
 
         {/* Article Body */}
-        <article className="article-prose bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 shadow-sm">
+        <article className="article-prose bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 shadow-xs">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}
@@ -166,14 +166,14 @@ export default async function TechArticlePage({ params }: TechArticlePageProps) 
 
           {/* FAQs */}
           {faqs.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-zinc-200 space-y-4">
-              <h2 className="text-xl font-bold text-zinc-900 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-indigo-600" /> Frequently Asked Questions
+            <div className="mt-8 pt-6 border-t border-slate-200 space-y-4">
+              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <HelpCircle className="w-5 h-5 text-blue-600" /> Frequently Asked Questions
               </h2>
               {faqs.map((faq: any, idx: number) => (
-                <div key={idx} className="bg-zinc-50 border border-zinc-200 rounded-xl p-4">
-                  <h3 className="text-sm font-bold text-zinc-900">Q: {faq.q}</h3>
-                  <p className="text-xs text-zinc-700 mt-1 pl-4">{faq.a}</p>
+                <div key={idx} className="bg-slate-50 border border-slate-200/80 rounded-lg p-4">
+                  <h3 className="text-sm font-bold text-slate-900">Q: {faq.q}</h3>
+                  <p className="text-xs text-slate-700 mt-1 pl-4 leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>

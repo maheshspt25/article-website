@@ -20,7 +20,7 @@ export default async function TechAiPage() {
         { name: 'AI', url: '/technology/ai' }
       ]} />
 
-      <div className="bg-purple-900 text-white rounded-2xl p-6">
+      <div className="bg-purple-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Artificial Intelligence & AI Productivity Tools</h1>
         <p className="text-xs sm:text-sm text-purple-200 mt-1">Generative AI software reviews, prompt engineering guides, and AI tools for developers.</p>
       </div>

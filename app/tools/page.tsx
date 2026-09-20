@@ -19,13 +19,13 @@ export default async function ToolsHubPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Tools', url: '/tools' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-3">
-        <div className="inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <Wrench className="w-4 h-4 text-amber-400" />
+      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 space-y-3 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+          <Wrench className="w-4 h-4 text-blue-600" />
           Client-Side Web Tools Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">100% Free Utility Tools & Calculators</h1>
-        <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900">100% Free Utility Tools & Calculators</h1>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
           Fast, private, client-side tools with zero data uploaded to external servers. No login required.
         </p>
       </div>

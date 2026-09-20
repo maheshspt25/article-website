@@ -32,7 +32,7 @@ export default function RegexTester() {
   }
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -55,7 +55,7 @@ export default function RegexTester() {
       )}
 
       {/* RegEx Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-zinc-50 border border-zinc-200 rounded-2xl p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-zinc-50 border border-zinc-200 rounded-lg p-4">
         <div className="sm:col-span-3">
           <label className="block text-xs font-extrabold uppercase text-zinc-700 mb-1">Regular Expression Pattern</label>
           <div className="flex items-center bg-white border border-zinc-300 rounded-xl px-3 py-2 font-mono text-sm font-bold text-zinc-900 focus-within:border-indigo-600">
@@ -90,7 +90,7 @@ export default function RegexTester() {
           rows={5}
           value={testText}
           onChange={(e) => setTestText(e.target.value)}
-          className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
+          className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
           placeholder="Paste sample text to test regex matches..."
         />
       </div>

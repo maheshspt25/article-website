@@ -239,7 +239,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Main Info */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-6 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-6 shadow-xs">
             <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-3">
               <FileText className="w-5 h-5 text-blue-600" /> Edit Article Details
             </h2>
@@ -348,7 +348,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Official Primary Reference Citations Manager */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-6 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-6 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
                 <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
@@ -423,7 +423,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Interactive Steps */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-6 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-6 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
                 <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
@@ -483,7 +483,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
           </div>
 
           {/* FAQs */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-6 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-6 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
                 <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
@@ -554,7 +554,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-6 py-2.5 rounded-xl text-sm shadow-md transition-all border border-blue-500/30 disabled:opacity-50"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-6 py-2.5 rounded-xl text-sm shadow-xs transition-all border border-blue-500/30 disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               {submitting ? 'Updating Article...' : 'Save & Update Article'}

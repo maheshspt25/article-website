@@ -184,16 +184,16 @@ export default async function HowToArticlePage({ params }: HowToArticlePageProps
         ]} />
 
         {/* Header */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 space-y-4 shadow-sm">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 space-y-4 shadow-xs">
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 font-medium">
-            <span className="bg-blue-50 text-blue-800 font-extrabold px-2.5 py-0.5 rounded uppercase border border-blue-200/60">
+            <span className="bg-slate-100 text-slate-700 font-semibold px-2.5 py-0.5 rounded-md uppercase border border-slate-200/80">
               {article.subCategory || article.categorySection}
             </span>
             <span className="flex items-center gap-1">
-              <User className="w-3.5 h-3.5" /> {article.author?.name || 'InfoMitra Editorial Desk'}
+              <User className="w-3.5 h-3.5 text-slate-400" /> {article.author?.name || 'InfoMitra Editorial Desk'}
             </span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" /> Published {new Date(article.createdAt).toLocaleDateString('en-IN')}
+              <Calendar className="w-3.5 h-3.5 text-slate-400" /> Published {new Date(article.createdAt).toLocaleDateString('en-IN')}
             </span>
             {article.readingTime && (
               <span className="flex items-center gap-1 text-slate-400">
@@ -206,7 +206,7 @@ export default async function HowToArticlePage({ params }: HowToArticlePageProps
             {article.title}
           </h1>
 
-          <p className="text-sm text-slate-600 leading-relaxed font-medium bg-slate-50/80 p-4 rounded-xl border border-slate-200/80">
+          <p className="text-sm text-slate-600 leading-relaxed font-normal bg-slate-50/80 p-4 rounded-lg border border-slate-200/80">
             {article.summary}
           </p>
         </div>
@@ -220,7 +220,7 @@ export default async function HowToArticlePage({ params }: HowToArticlePageProps
         <TextToSpeech articleTitle={article.title} contentHtml={article.content} />
 
         {/* Article Body */}
-        <article className="article-prose bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm">
+        <article className="article-prose bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 shadow-xs">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}
@@ -235,7 +235,7 @@ export default async function HowToArticlePage({ params }: HowToArticlePageProps
                 <HelpCircle className="w-5 h-5 text-blue-600" /> Frequently Asked Questions
               </h2>
               {faqs.map((faq: any, idx: number) => (
-                <div key={idx} className="bg-slate-50 border border-slate-200/80 rounded-xl p-4">
+                <div key={idx} className="bg-slate-50 border border-slate-200/80 rounded-lg p-4">
                   <h3 className="text-sm font-bold text-slate-900">Q: {faq.q}</h3>
                   <p className="text-xs text-slate-700 mt-1 pl-4 leading-relaxed">{faq.a}</p>
                 </div>

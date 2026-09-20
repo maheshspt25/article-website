@@ -48,13 +48,13 @@ export default async function HowToHubPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'How-To', url: '/how-to' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl border border-slate-800">
-        <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <HelpCircle className="w-4 h-4 text-blue-400" />
+      <div className="bg-white text-slate-900 rounded-xl p-6 sm:p-8 space-y-4 shadow-xs border border-slate-200/80">
+        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+          <HelpCircle className="w-4 h-4 text-blue-600" />
           Practical Solutions & Verified Tutorials
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">How-To & Practical Step-by-Step Guides</h1>
-        <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">How-To & Practical Step-by-Step Guides</h1>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
           Tested step-by-step tutorials to solve software glitches, document conversion challenges, operating system tweaks, and network setups.
         </p>
 
@@ -65,9 +65,9 @@ export default async function HowToHubPage() {
               <Link
                 key={sub.name}
                 href={sub.href}
-                className="flex items-center gap-1.5 bg-slate-800 hover:bg-blue-600 text-slate-200 hover:text-white px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border border-slate-700/80"
+                className="flex items-center gap-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-md text-xs font-medium transition-all border border-slate-200/80 shadow-xs"
               >
-                <Icon className="w-3.5 h-3.5 text-blue-400" />
+                <Icon className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500" />
                 {sub.name}
               </Link>
             );

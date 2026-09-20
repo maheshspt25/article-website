@@ -69,17 +69,17 @@ export default async function DynamicHowToCategoryPage({ params }: Props) {
         ]}
       />
 
-      <div className={`${info.bg} text-white rounded-2xl p-6 sm:p-8 shadow-xl`}>
-        <h1 className="text-2xl sm:text-3xl font-extrabold capitalize">{info.title}</h1>
-        <p className="text-xs sm:text-sm text-slate-200 mt-2 max-w-3xl leading-relaxed">{info.desc}</p>
-        <div className="mt-4 text-xs font-semibold bg-white/10 px-3 py-1.5 rounded-lg inline-block">
+      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 shadow-xs">
+        <h1 className="text-2xl sm:text-3xl font-extrabold capitalize text-slate-900">{info.title}</h1>
+        <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-3xl leading-relaxed">{info.desc}</p>
+        <div className="mt-4 text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200/60 px-3 py-1 rounded-md inline-block">
           {articles.length} Verified Guides Available
         </div>
       </div>
 
       {articles.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-2xl border border-slate-200">
-          <p className="text-slate-600 font-medium">No guides found in this sub-category yet.</p>
+        <div className="text-center py-12 bg-white rounded-lg border border-slate-200/80 shadow-xs">
+          <p className="text-slate-600 font-medium text-sm">No guides found in this sub-category yet.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

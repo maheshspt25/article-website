@@ -77,7 +77,7 @@ export default function TimezoneConverter() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -97,7 +97,7 @@ export default function TimezoneConverter() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {timezones.slice(0, 8).map((tz) => (
-            <div key={tz.code} className="bg-slate-900 text-white rounded-2xl p-3.5 space-y-1 shadow-sm">
+            <div key={tz.code} className="bg-slate-900 text-white rounded-lg p-3.5 space-y-1 shadow-sm">
               <div className="flex items-center justify-between text-xs text-slate-400 font-bold">
                 <span>{tz.flag} {tz.code}</span>
                 <span className="text-[10px] text-slate-500 font-mono">{tz.offset}</span>
@@ -112,7 +112,7 @@ export default function TimezoneConverter() {
       </div>
 
       {/* Interactive Timezone Converter Controls */}
-      <div className="space-y-4 bg-zinc-50 border border-zinc-200 rounded-2xl p-5">
+      <div className="space-y-4 bg-zinc-50 border border-zinc-200 rounded-lg p-5">
         <h3 className="text-xs font-extrabold text-zinc-900 uppercase tracking-wider">Convert Time &amp; Schedule Meetings</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

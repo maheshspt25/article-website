@@ -64,7 +64,7 @@ export default function ImageMetadataRemover() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function ImageMetadataRemover() {
       </div>
 
       {/* Upload Zone */}
-      <div className="border-2 border-dashed border-zinc-300 hover:border-emerald-500 rounded-2xl p-8 text-center bg-zinc-50/50 transition-colors">
+      <div className="border-2 border-dashed border-zinc-300 hover:border-emerald-500 rounded-lg p-8 text-center bg-zinc-50/50 transition-colors">
         <input
           type="file"
           accept="image/jpeg,image/png,image/webp"
@@ -101,7 +101,7 @@ export default function ImageMetadataRemover() {
       {/* Controls & Results */}
       {selectedFile && (
         <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-zinc-50 border border-zinc-200 rounded-2xl p-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-zinc-50 border border-zinc-200 rounded-lg p-5">
             <div className="space-y-1">
               <span className="text-xs font-extrabold uppercase text-zinc-700">Choose Clean Output Format</span>
               <div className="flex items-center gap-2 pt-1">
@@ -139,7 +139,7 @@ export default function ImageMetadataRemover() {
           </div>
 
           {/* Privacy Audit Checklist */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 space-y-3 shadow-md">
+          <div className="bg-slate-900 text-white rounded-lg p-6 space-y-3 shadow-xs">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <span className="text-xs font-extrabold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Privacy &amp; AI Metadata Removal Audit
@@ -174,7 +174,7 @@ export default function ImageMetadataRemover() {
                 <a
                   href={cleanDataUrl}
                   download={`sanitized_image.${format.split('/')[1]}`}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs shadow-md transition-all border border-emerald-400/30"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs shadow-xs transition-all border border-emerald-400/30"
                 >
                   <Download className="w-4 h-4" /> Download Metadata-Free Image
                 </a>

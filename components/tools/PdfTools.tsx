@@ -6,7 +6,7 @@ import { FileText, ArrowRight, CheckCircle, FileCheck, Layers, Minimize2 } from 
 
 export default function PdfTools() {
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm max-w-3xl mx-auto space-y-6">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm max-w-3xl mx-auto space-y-6">
       <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
         <div className="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center">
           <FileText className="w-6 h-6" />

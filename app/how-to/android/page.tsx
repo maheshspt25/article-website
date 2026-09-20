@@ -20,7 +20,7 @@ export default async function HowToAndroidPage() {
         { name: 'Android', url: '/how-to/android' }
       ]} />
 
-      <div className="bg-emerald-900 text-white rounded-2xl p-6">
+      <div className="bg-emerald-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Android Guides & Troubleshooting</h1>
         <p className="text-xs sm:text-sm text-emerald-200 mt-1">Practical battery, performance, and security solutions for Android phones.</p>
       </div>

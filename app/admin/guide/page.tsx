@@ -10,7 +10,7 @@ export default function AdminGuidePage() {
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Banner */}
-        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md border border-blue-600/30 space-y-3">
+        <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white p-6 sm:p-8 rounded-xl shadow-xs border border-blue-600/30 space-y-3">
           <div className="flex items-center gap-2">
             <span className="bg-white/20 text-white text-xs font-extrabold px-3 py-1 rounded-full border border-white/30 uppercase tracking-wider flex items-center gap-1.5 backdrop-blur-xs">
               <BookOpen className="w-3.5 h-3.5 text-blue-200" /> CMS Tutorial & Field Guide
@@ -25,7 +25,7 @@ export default function AdminGuidePage() {
         </div>
 
         {/* Section 1: Overview & Navigation */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
+        <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-4 shadow-xs">
           <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-3">
             <Sparkles className="w-5 h-5 text-blue-600" /> 1. Quick Navigation & Workflow
           </h2>
@@ -64,7 +64,7 @@ export default function AdminGuidePage() {
         </div>
 
         {/* Section 2: Input Field Tutorial */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-6 shadow-xs">
+        <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-6 shadow-xs">
           <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-3">
             <FileText className="w-5 h-5 text-blue-600" /> 2. Field-by-Field Input Guide & Sample Values
           </h2>
@@ -155,7 +155,7 @@ export default function AdminGuidePage() {
         </div>
 
         {/* Section 3: Best Practices */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
+        <div className="bg-white border border-slate-200/90 rounded-xl p-6 space-y-4 shadow-xs">
           <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-3">
             <Lightbulb className="w-5 h-5 text-amber-500" /> 3. Best Practices for High Search Engine Rankings
           </h2>
@@ -188,14 +188,14 @@ export default function AdminGuidePage() {
         </div>
 
         {/* Action Link */}
-        <div className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-2xl p-6">
+        <div className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-xl p-6">
           <div>
             <h3 className="font-extrabold text-blue-900 text-base">Ready to create or edit an article?</h3>
             <p className="text-xs text-blue-700 font-medium">Head over to the Create Article form to publish new content.</p>
           </div>
           <Link
             href="/admin/articles/new"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-md transition-all"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-xs transition-all"
           >
             Go to Create Form <ArrowRight className="w-4 h-4" />
           </Link>

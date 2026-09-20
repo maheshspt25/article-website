@@ -44,7 +44,7 @@ export default function TextDiffTool() {
   }
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -73,7 +73,7 @@ export default function TextDiffTool() {
             rows={7}
             value={originalText}
             onChange={(e) => setOriginalText(e.target.value)}
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
             placeholder="Paste original code or text here..."
           />
         </div>
@@ -84,7 +84,7 @@ export default function TextDiffTool() {
             rows={7}
             value={modifiedText}
             onChange={(e) => setModifiedText(e.target.value)}
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
             placeholder="Paste modified code or text here..."
           />
         </div>
@@ -96,7 +96,7 @@ export default function TextDiffTool() {
           <ArrowLeftRight className="w-4 h-4 text-indigo-600" /> Line-by-Line Visual Diff
         </h3>
 
-        <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-800 text-xs font-mono">
+        <div className="bg-slate-900 rounded-lg overflow-hidden shadow-sm border border-slate-800 text-xs font-mono">
           <div className="grid grid-cols-12 bg-slate-950 text-slate-400 font-bold p-3 border-b border-slate-800 uppercase text-[11px]">
             <div className="col-span-1 text-center">Line</div>
             <div className="col-span-5 border-r border-slate-800 pr-2">Original Version</div>

@@ -8,10 +8,10 @@ const cspHeader = `
   script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://scripts.clarity.ms https://c.clarity.ms https://pagead2.googlesyndication.com https://*.googlesyndication.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adservice.google.com https://tpc.googlesyndication.com ${isDev ? "'unsafe-eval'" : ''};
   connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.clarity.ms https://scripts.clarity.ms https://pagead2.googlesyndication.com https://*.googlesyndication.com https://googleads.g.doubleclick.net;
   frame-src 'self' https://googleads.g.doubleclick.net https://*.doubleclick.net https://pagead2.googlesyndication.com https://*.googlesyndication.com https://tpc.googlesyndication.com;
-  style-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' blob: data: https: https://www.google-analytics.com https://*.google-analytics.com https://c.clarity.ms https://*.clarity.ms https://pagead2.googlesyndication.com https://*.doubleclick.net;
   media-src 'self' blob: https://translate.google.com;
-  font-src 'self' data:;
+  font-src 'self' data: https://fonts.gstatic.com;
   object-src 'none';
   base-uri 'self';
   form-action 'self';
@@ -35,9 +35,6 @@ const nextConfig = {
     ],
   },
   experimental: {
-    outputFileTracingIncludes: {
-      '/**': ['./prisma/dev.db', './prisma/schema.prisma'],
-    },
     optimizePackageImports: ['lucide-react', 'date-fns'],
   },
   async headers() {

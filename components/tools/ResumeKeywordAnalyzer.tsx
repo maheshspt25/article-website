@@ -40,7 +40,7 @@ export default function ResumeKeywordAnalyzer() {
     : 0;
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -61,7 +61,7 @@ export default function ResumeKeywordAnalyzer() {
             value={resumeText}
             onChange={(e) => setResumeText(e.target.value)}
             placeholder="Paste your full resume text here..."
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-medium text-zinc-900 focus:bg-white focus:outline-none focus:border-blue-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-medium text-zinc-900 focus:bg-white focus:outline-none focus:border-blue-600 leading-relaxed"
           />
           <div className="flex items-center justify-between text-[11px] text-zinc-500 font-bold px-1">
             <span>Words: <strong>{resumeWords}</strong></span>
@@ -77,7 +77,7 @@ export default function ResumeKeywordAnalyzer() {
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
             placeholder="Paste job posting or requirements text here to calculate match score..."
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-medium text-zinc-900 focus:bg-white focus:outline-none focus:border-blue-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-medium text-zinc-900 focus:bg-white focus:outline-none focus:border-blue-600 leading-relaxed"
           />
           <div className="text-[11px] text-zinc-500 font-bold px-1">
             Target Keywords Identified: <strong>{jobKeywords.length}</strong>
@@ -87,7 +87,7 @@ export default function ResumeKeywordAnalyzer() {
 
       {/* Results Box */}
       {jobDescription.trim() && (
-        <div className="bg-slate-900 text-white p-6 rounded-2xl space-y-4 shadow-lg">
+        <div className="bg-slate-900 text-white p-6 rounded-lg space-y-4 shadow-sm">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">ATS Match Analysis Score</span>
             <span className={`text-xs font-black px-3 py-1 rounded-full uppercase ${

@@ -18,7 +18,7 @@ export default async function TravelPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <Breadcrumbs items={[{ name: 'Travel', url: '/travel' }]} />
 
-      <div className="bg-sky-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-sky-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <div className="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-400/30 text-xs px-3 py-1 rounded-full font-semibold">
           <Compass className="w-4 h-4 text-sky-400" />
           Indian Destination & Heritage Hub

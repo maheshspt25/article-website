@@ -20,7 +20,7 @@ export default async function AdmitCardPage() {
         { name: 'Admit Card', url: '/jobs/admit-card' }
       ]} />
 
-      <div className="bg-purple-900 text-white rounded-2xl p-6">
+      <div className="bg-purple-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Hall Ticket & Admit Card Download</h1>
         <p className="text-xs sm:text-sm text-purple-200 mt-1">Direct login portals for downloading official examination call letters.</p>
       </div>

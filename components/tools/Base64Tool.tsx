@@ -21,7 +21,7 @@ export default function Base64Tool() {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm max-w-xl mx-auto space-y-4">
+    <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm max-w-xl mx-auto space-y-4">
       <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
         <div className="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center">
           <Binary className="w-6 h-6" />

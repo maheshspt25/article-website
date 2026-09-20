@@ -14,7 +14,7 @@ export default function ContactPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Contact Us', url: '/contact' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold">Contact InfoMitra Desk</h1>
         <p className="text-xs sm:text-sm text-slate-300">
           Have corrections, feedback, or editorial inquiries? Our team responds within 24 business hours.
@@ -22,7 +22,7 @@ export default function ContactPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-6">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 space-y-6">
           <h2 className="text-lg font-bold text-slate-900 border-b pb-3">Editorial Contact Information</h2>
           
           <div className="space-y-4 text-xs sm:text-sm">
@@ -44,7 +44,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
           <h2 className="text-lg font-bold text-slate-900 border-b pb-3">Send Editorial Feedback</h2>
           <form className="space-y-4 text-xs">
             <div>

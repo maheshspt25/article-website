@@ -20,7 +20,7 @@ export default async function SalaryPage() {
         { name: 'Salary Structure', url: '/jobs/salary' }
       ]} />
 
-      <div className="bg-amber-900 text-white rounded-2xl p-6">
+      <div className="bg-amber-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Government & Corporate Salary Guides</h1>
         <p className="text-xs sm:text-sm text-amber-200 mt-1">In-Hand Salary, 7th Pay Commission Pay Matrix Levels, and Allowances.</p>
       </div>

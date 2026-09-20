@@ -27,13 +27,13 @@ export default async function FinanceHubPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Finance', url: '/finance' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-4">
-        <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <Wallet className="w-4 h-4 text-blue-400" />
+      <div className="bg-white text-slate-900 rounded-xl p-6 sm:p-8 space-y-4 border border-slate-200/80 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+          <Wallet className="w-4 h-4 text-blue-600" />
           Financial & Tax Information Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">Finance & Government Schemes</h1>
-        <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900">Finance & Government Schemes</h1>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
           Verified guides on Income Tax slabs, PM Kisan Samman Nidhi, bank fixed deposit interest rates, and mutual fund investment strategies.
         </p>
 
@@ -42,7 +42,7 @@ export default async function FinanceHubPage() {
             <Link
               key={sub.name}
               href={sub.href}
-              className="bg-slate-800 hover:bg-blue-600 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border border-slate-700"
+              className="bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-md text-xs font-medium transition-colors border border-slate-200/80 shadow-xs"
             >
               {sub.name}
             </Link>
@@ -50,10 +50,10 @@ export default async function FinanceHubPage() {
         </div>
       </div>
 
-      <div className="bg-amber-50 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3">
+      <div className="bg-amber-50/70 border border-amber-200/80 rounded-lg p-4 text-xs text-amber-900 flex items-start gap-3 shadow-xs">
         <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
         <div>
-          <strong className="font-bold block mb-0.5">Financial Information Disclaimer:</strong>
+          <strong className="font-semibold block mb-0.5">Financial Information Disclaimer:</strong>
           Articles in this section provide educational and general informational summaries based on official notifications. They do not constitute personalized financial advice.
         </div>
       </div>

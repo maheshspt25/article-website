@@ -44,7 +44,7 @@ export default function MarkdownEditor() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function MarkdownEditor() {
             rows={14}
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
             placeholder="Type your markdown text here..."
           />
         </div>
@@ -91,7 +91,7 @@ export default function MarkdownEditor() {
             <Eye className="w-4 h-4 text-indigo-600" /> Live Rendered Preview
           </label>
           <div
-            className="w-full min-h-[300px] bg-zinc-50/50 border border-zinc-200 rounded-2xl p-4 text-xs text-zinc-800 font-sans leading-relaxed overflow-y-auto"
+            className="w-full min-h-[300px] bg-zinc-50/50 border border-zinc-200 rounded-lg p-4 text-xs text-zinc-800 font-sans leading-relaxed overflow-y-auto"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
         </div>

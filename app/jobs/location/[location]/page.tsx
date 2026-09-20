@@ -35,7 +35,7 @@ export default async function LocationJobsPage({ params }: LocationPageProps) {
         { name: `Jobs in ${loc.name}`, url: `/jobs/location/${loc.slug}` }
       ]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-3">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-3">
         <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
           <MapPin className="w-4 h-4 text-blue-400" />
           Location Employment Hub

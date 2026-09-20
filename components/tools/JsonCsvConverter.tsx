@@ -74,7 +74,7 @@ export default function JsonCsvConverter() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -116,7 +116,7 @@ export default function JsonCsvConverter() {
             rows={10}
             value={jsonText}
             onChange={(e) => setJsonText(e.target.value)}
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
           />
         </div>
 
@@ -135,7 +135,7 @@ export default function JsonCsvConverter() {
             value={csvText}
             onChange={(e) => setCsvText(e.target.value)}
             placeholder="CSV output will appear here, or paste CSV text to convert to JSON..."
-            className="w-full bg-zinc-50 border border-zinc-300 rounded-2xl p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
+            className="w-full bg-zinc-50 border border-zinc-300 rounded-lg p-4 text-xs font-mono text-zinc-900 focus:bg-white focus:outline-none focus:border-indigo-600 leading-relaxed"
           />
         </div>
       </div>

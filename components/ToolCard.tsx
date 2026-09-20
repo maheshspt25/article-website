@@ -54,15 +54,15 @@ export default function ToolCard({ tool }: ToolCardProps) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm hover:shadow-xl hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-between group"
+      className="bg-white rounded-lg border border-slate-200/80 p-5 shadow-xs hover:border-slate-300 hover:shadow-card-hover transition-all duration-200 flex flex-col justify-between group"
     >
       <div>
         <div className="flex items-center justify-between mb-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors border border-blue-200/80">
-            <IconComponent className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors border border-blue-200/80">
+            <IconComponent className="w-4 h-4" />
           </div>
           {tool.category && (
-            <span className="text-[10px] font-extrabold uppercase tracking-wide px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200/60 text-slate-600">
               {tool.category}
             </span>
           )}

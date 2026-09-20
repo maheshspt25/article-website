@@ -28,18 +28,18 @@ export default function JobCard({ job }: JobCardProps) {
     : 'Check Notification';
 
   return (
-    <div className={`bg-white rounded-xl border p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group ${
-      job.featured ? 'border-blue-300 ring-1 ring-blue-100 bg-gradient-to-br from-white to-blue-50/20' : 'border-slate-200'
+    <div className={`bg-white rounded-lg border p-5 shadow-xs hover:border-slate-300 hover:shadow-card-hover transition-all flex flex-col justify-between group ${
+      job.featured ? 'border-blue-300 ring-1 ring-blue-100 bg-gradient-to-br from-white to-blue-50/20' : 'border-slate-200/80'
     }`}>
       <div>
         {/* Header Tags */}
         <div className="flex items-center justify-between gap-2 mb-2">
-          <span className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-100 text-blue-800">
-            <Building2 className="w-3 h-3" />
+          <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200/80 text-slate-700">
+            <Building2 className="w-3 h-3 text-slate-400" />
             {job.organization}
           </span>
           {job.vacancyCount && (
-            <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200/80 text-emerald-800">
               {job.vacancyCount.toLocaleString('en-IN')} Posts
             </span>
           )}

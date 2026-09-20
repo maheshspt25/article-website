@@ -20,7 +20,7 @@ export default async function FinanceSavingsPage() {
         { name: 'Savings', url: '/finance/savings' }
       ]} />
 
-      <div className="bg-blue-900 text-white rounded-2xl p-6">
+      <div className="bg-blue-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Fixed Deposits & Mutual Fund Savings</h1>
         <p className="text-xs sm:text-sm text-blue-200 mt-1">Bank FD rates, Public Provident Fund (PPF), and SIP mutual fund guides.</p>
       </div>

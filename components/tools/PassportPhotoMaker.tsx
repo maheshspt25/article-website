@@ -96,7 +96,7 @@ export default function PassportPhotoMaker() {
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -148,7 +148,7 @@ export default function PassportPhotoMaker() {
       </div>
 
       {/* Upload Box */}
-      <div className="border-2 border-dashed border-zinc-300 hover:border-indigo-500 rounded-2xl p-8 text-center bg-zinc-50/50 transition-colors">
+      <div className="border-2 border-dashed border-zinc-300 hover:border-indigo-500 rounded-lg p-8 text-center bg-zinc-50/50 transition-colors">
         <input
           type="file"
           accept="image/*"
@@ -167,7 +167,7 @@ export default function PassportPhotoMaker() {
 
       {/* Controls & Preview */}
       {imageSrc && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-zinc-50 border border-zinc-200 rounded-2xl p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-zinc-50 border border-zinc-200 rounded-lg p-6">
           <div className="space-y-4">
             <h3 className="text-xs font-extrabold uppercase text-zinc-700">Target Output Dimensions &amp; Size</h3>
 
@@ -205,7 +205,7 @@ export default function PassportPhotoMaker() {
 
             <button
               onClick={processImage}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-md transition-all flex items-center justify-center gap-2"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-xs transition-all flex items-center justify-center gap-2"
             >
               <Crop className="w-4 h-4" /> Process &amp; Format Photo
             </button>
@@ -215,7 +215,7 @@ export default function PassportPhotoMaker() {
           <div className="text-center space-y-3 flex flex-col items-center justify-center border-l border-zinc-200 pl-4">
             {processedUrl ? (
               <>
-                <div className="border-2 border-indigo-600 rounded-xl overflow-hidden shadow-md inline-block bg-white p-1">
+                <div className="border-2 border-indigo-600 rounded-xl overflow-hidden shadow-xs inline-block bg-white p-1">
                   <img src={processedUrl} alt="Processed Passport Output" style={{ maxWidth: '180px', maxHeight: '200px' }} />
                 </div>
                 <div className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
@@ -224,7 +224,7 @@ export default function PassportPhotoMaker() {
                 <a
                   href={processedUrl}
                   download={`official_photo_${targetWidth}x${targetHeight}.jpg`}
-                  className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-md transition-all"
+                  className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-xs transition-all"
                 >
                   <Download className="w-4 h-4" /> Download Official Photo (JPG)
                 </a>

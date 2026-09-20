@@ -14,12 +14,12 @@ export default function EditorialPolicyPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Editorial Policy', url: '/editorial-policy' }]} />
 
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-2">
+      <div className="bg-slate-900 text-white rounded-xl p-6 sm:p-8 space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold">Editorial & Fact-Checking Policy</h1>
         <p className="text-xs text-slate-300">Our Commitment to Accuracy and Integrity</p>
       </div>
 
-      <div className="article-prose bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6">
+      <div className="article-prose bg-white rounded-xl border border-slate-200 p-6 sm:p-8 space-y-6">
         <h2>1. Primary Source Verification</h2>
         <p>
           Every article published on InfoMitra must cite authoritative primary sources. For technical and financial guides, our researchers inspect official documentation released by primary entities.

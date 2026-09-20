@@ -20,7 +20,7 @@ export default async function TechSoftwarePage() {
         { name: 'Software', url: '/technology/software' }
       ]} />
 
-      <div className="bg-blue-900 text-white rounded-2xl p-6">
+      <div className="bg-blue-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Desktop Software & Open-Source Utilities</h1>
         <p className="text-xs sm:text-sm text-blue-200 mt-1">Recommended desktop applications for Windows, macOS, and Linux.</p>
       </div>

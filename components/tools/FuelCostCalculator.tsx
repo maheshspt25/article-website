@@ -13,7 +13,7 @@ export default function FuelCostCalculator() {
   const costPerKm = distanceKm > 0 ? totalCost / distanceKm : 0;
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -26,7 +26,7 @@ export default function FuelCostCalculator() {
       </div>
 
       {/* Main Results Display */}
-      <div className="bg-gradient-to-r from-amber-900 via-yellow-900 to-slate-900 text-white p-6 rounded-2xl shadow-md grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="bg-gradient-to-r from-amber-900 via-yellow-900 to-slate-900 text-white p-6 rounded-lg shadow-xs grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="space-y-1">
           <span className="text-xs text-amber-300 font-bold uppercase tracking-wider">Total Fuel Cost</span>
           <div className="text-4xl font-black text-white">
@@ -50,7 +50,7 @@ export default function FuelCostCalculator() {
       </div>
 
       {/* Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 bg-zinc-50 border border-zinc-200 rounded-2xl p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 bg-zinc-50 border border-zinc-200 rounded-lg p-5">
         <div className="space-y-1.5">
           <label className="block text-xs font-extrabold uppercase text-zinc-700">Trip Distance (KM)</label>
           <input

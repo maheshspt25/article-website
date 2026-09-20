@@ -35,13 +35,13 @@ export default async function JobsHubPage() {
       <Breadcrumbs items={[{ name: 'Jobs', url: '/jobs' }]} />
 
       {/* Hero Banner */}
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 space-y-4">
-        <div className="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs px-3 py-1 rounded-full font-semibold">
-          <Briefcase className="w-4 h-4 text-blue-400" />
+      <div className="bg-white text-slate-900 border border-slate-200/80 rounded-xl p-6 sm:p-8 space-y-4 shadow-xs">
+        <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200/80 text-xs px-3 py-1 rounded-md font-semibold">
+          <Briefcase className="w-4 h-4 text-blue-600" />
           Verified Recruitment Desk
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold">Jobs & Careers Portal</h1>
-        <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900">Jobs & Careers Portal</h1>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
           Browse official job notifications, salary structures, selection process details, syllabus downloads, and direct application links.
         </p>
 
@@ -51,7 +51,7 @@ export default async function JobsHubPage() {
             <Link
               key={sub.name}
               href={sub.href}
-              className="bg-slate-800 hover:bg-blue-600 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border border-slate-700"
+              className="bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-md text-xs font-medium transition-colors border border-slate-200/80 shadow-xs"
             >
               {sub.name}
             </Link>

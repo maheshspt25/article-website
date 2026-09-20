@@ -62,7 +62,7 @@ export default function GpaCalculator() {
       ];
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+    <div className="bg-white border border-zinc-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
       <div className="flex items-center justify-between border-b border-zinc-100 pb-4">
         <div>
           <h1 className="text-2xl font-black text-zinc-900 flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function GpaCalculator() {
       </div>
 
       {/* Results Header */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gradient-to-r from-indigo-900 to-slate-900 text-white p-6 rounded-2xl shadow-md">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gradient-to-r from-indigo-900 to-slate-900 text-white p-6 rounded-lg shadow-xs">
         <div className="space-y-1">
           <span className="text-xs text-indigo-300 font-bold uppercase tracking-wider">Calculated GPA / CGPA</span>
           <div className="text-4xl font-black text-white">{gpa} <span className="text-xs text-indigo-300 font-semibold">/ {scale}.0</span></div>

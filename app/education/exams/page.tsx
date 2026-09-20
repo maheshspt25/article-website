@@ -20,7 +20,7 @@ export default async function ExamsPage() {
         { name: 'Exams', url: '/education/exams' }
       ]} />
 
-      <div className="bg-indigo-900 text-white rounded-2xl p-6">
+      <div className="bg-indigo-900 text-white rounded-xl p-6">
         <h1 className="text-2xl sm:text-3xl font-bold">Competitive Exams Blueprint</h1>
         <p className="text-xs sm:text-sm text-indigo-200 mt-1">Syllabus breakdown, weightage analysis, and study plans for national entrance tests.</p>
       </div>

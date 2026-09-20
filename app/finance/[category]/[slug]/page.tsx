@@ -85,51 +85,51 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
         ]} />
 
         {/* Header */}
-        <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-6 shadow-sm">
-          <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 font-medium">
-            <span className="bg-indigo-50 text-indigo-800 font-bold px-2.5 py-0.5 rounded uppercase border border-indigo-200/60">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-6 sm:p-8 space-y-6 shadow-xs">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 font-medium">
+            <span className="bg-slate-100 text-slate-700 font-semibold px-2.5 py-0.5 rounded-md uppercase border border-slate-200/80">
               {article.subCategory || article.categorySection}
             </span>
             {article.readingTime && (
-              <span className="flex items-center gap-1 text-zinc-400">
+              <span className="flex items-center gap-1 text-slate-400">
                 <Clock className="w-3.5 h-3.5" /> {article.readingTime}
               </span>
             )}
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 leading-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
             {article.title}
           </h1>
 
-          <p className="text-sm text-zinc-600 leading-relaxed font-medium bg-zinc-50 p-4 rounded-xl border border-zinc-200/80">
+          <p className="text-sm text-slate-600 leading-relaxed font-normal bg-slate-50 p-4 rounded-lg border border-slate-200/80">
             {article.summary}
           </p>
 
           {/* YMYL Financial Editorial & Transparency Panel */}
-          <div className="bg-slate-900 text-slate-100 rounded-2xl p-5 space-y-4 border border-slate-800 shadow-md">
+          <div className="bg-slate-900 text-slate-100 rounded-xl p-5 space-y-4 border border-slate-800 shadow-xs">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
-              <span className="text-xs font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-sky-400" /> Financial Content Transparency & Sourcing
               </span>
               <span className="text-[11px] text-slate-400 font-mono">YMYL Compliance</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-              <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
                 <span className="text-slate-400 font-medium block text-[11px]">Published:</span>
                 <strong className="text-white font-semibold flex items-center gap-1 mt-0.5">
                   <Calendar className="w-3.5 h-3.5 text-sky-400" /> {publishedDateFormatted}
                 </strong>
               </div>
 
-              <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
                 <span className="text-slate-400 font-medium block text-[11px]">Last updated:</span>
                 <strong className="text-white font-semibold flex items-center gap-1 mt-0.5">
                   <Calendar className="w-3.5 h-3.5 text-emerald-400" /> {updatedDateFormatted}
                 </strong>
               </div>
 
-              <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+              <div className="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60">
                 <span className="text-slate-400 font-medium block text-[11px]">Reviewed by:</span>
                 <strong className="text-white font-semibold flex items-center gap-1 mt-0.5">
                   <User className="w-3.5 h-3.5 text-indigo-400" /> {article.author?.name || 'InfoMitra Editorial Desk'}
@@ -139,7 +139,7 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
 
             {/* Primary Reference Sources List */}
             <div className="space-y-1.5 pt-1">
-              <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block">Sources & Official Portals:</span>
+              <span className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider block">Sources & Official Portals:</span>
               <div className="flex flex-wrap gap-2">
                 {sources.map((src, idx) => (
                   <a
@@ -147,7 +147,7 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
                     href={src.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] font-medium px-2.5 py-1 rounded-lg border border-slate-700 transition-colors"
+                    className="inline-flex items-center gap-1 bg-slate-800 hover:bg-slate-700 text-sky-300 text-[11px] font-medium px-2.5 py-1 rounded-md border border-slate-700 transition-colors"
                   >
                     <span>{src.title}</span>
                     <ExternalLink className="w-3 h-3 text-sky-400" />
@@ -157,8 +157,8 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
             </div>
 
             {/* Important Assumptions Box */}
-            <div className="bg-slate-800/90 border border-slate-700 p-3 rounded-xl text-[11px] space-y-1 text-slate-300">
-              <strong className="text-amber-400 font-bold flex items-center gap-1">
+            <div className="bg-slate-800/90 border border-slate-700 p-3 rounded-lg text-[11px] space-y-1 text-slate-300">
+              <strong className="text-amber-400 font-semibold flex items-center gap-1">
                 <Info className="w-3.5 h-3.5 text-amber-400" /> Important Assumptions:
               </strong>
               <p className="leading-relaxed">
@@ -168,10 +168,10 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
           </div>
 
           {/* Mandatory Finance Disclaimer Banner */}
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-3">
+          <div className="bg-amber-50/70 border border-amber-200/80 rounded-lg p-4 text-xs text-amber-900 flex items-start gap-3 shadow-xs">
             <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <strong className="font-bold block mb-0.5">Disclaimer:</strong>
+              <strong className="font-semibold block mb-0.5">Disclaimer:</strong>
               {article.disclaimer || 'Information published on this page is provided solely for educational and informational purposes and does not constitute personalized financial, investment, or tax advice. Please consult a SEBI-registered advisor or Chartered Accountant (CA) for professional financial guidance.'}
             </div>
           </div>
@@ -181,7 +181,7 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
         <TextToSpeech articleTitle={article.title} contentHtml={article.content} />
 
         {/* Article Body */}
-        <article className="article-prose bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 shadow-sm">
+        <article className="article-prose bg-white rounded-xl border border-zinc-200 p-6 sm:p-8 shadow-sm">
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}

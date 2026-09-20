@@ -38,10 +38,10 @@ export default function AdminLoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex items-center justify-center p-4 font-sans">
-      <div className="w-full max-w-md bg-white border border-slate-200/90 rounded-3xl p-8 space-y-6 shadow-xl">
+      <div className="w-full max-w-md bg-white border border-slate-200/90 rounded-xl p-8 space-y-6 shadow-xs">
         {/* Brand Header */}
         <div className="text-center space-y-3">
-          <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center font-extrabold text-white text-2xl mx-auto shadow-md shadow-blue-500/20">
+          <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center font-extrabold text-white text-2xl mx-auto shadow-xs shadow-blue-500/20">
             IM
           </div>
 
@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3 rounded-xl text-sm shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 border border-blue-500/30"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3 rounded-xl text-sm shadow-xs transition-all flex items-center justify-center gap-2 disabled:opacity-50 border border-blue-500/30"
           >
             {loading ? 'Authenticating...' : 'Access Admin Dashboard'}
             <ArrowRight className="w-4 h-4" />
