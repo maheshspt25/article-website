@@ -282,20 +282,9 @@ export function parseDeepImageMetadata(buffer: ArrayBuffer, file: { name: string
     aspectRatio: '1:1',
     hasGps: false,
     rawTagsCount: 0,
-    encoding: {
-      encodingProcess: 'Baseline DCT, Huffman coding',
-      bitsPerSample: 8,
-      colorComponents: 3,
-      yCbCrSubSampling: 'YCbCr4:2:0 (2 2)',
-      jfifVersion: '1.01',
-      resolutionUnit: 'None',
-      xResolution: 1,
-      yResolution: 1,
-    },
+    encoding: {},
     c2pa: {
       found: false,
-      jumdType: '(c2pa)-0011-0010-800000aa00389b71',
-      jumdLabel: 'c2pa',
     },
     rawHeaderHex: hexLines,
     rawHeaderAscii: asciiLines,
@@ -514,10 +503,32 @@ export function parseDeepImageMetadata(buffer: ArrayBuffer, file: { name: string
       }
 
       // APP11: JUMBF / C2PA marker (0xFFEB)
-      if (marker === 0xffeb) {
-        result.c2pa.found = true;
-        result.c2pa.jumdType = '(c2pa)-0011-0010-800000aa00389b71';
-        result.c2pa.jumdLabel = 'c2pa';
+      if (marker === 0xffeb && markerLength > 8) {
+        // Try to read JUMBF box type and label from the marker data
+        const jumbfStart = offset + 2;
+        if (jumbfStart + 20 <= length) {
+          let jumbfStr = '';
+          for (let j = jumbfStart; j < Math.min(jumbfStart + markerLength - 2, jumbfStart + 200); j++) {
+            const ch = uint8Arr[j];
+            jumbfStr += ch >= 32 && ch <= 126 ? String.fromCharCode(ch) : ' ';
+          }
+          if (jumbfStr.includes('c2pa') || jumbfStr.includes('jumb')) {
+            result.c2pa.found = true;
+            // Try to extract the JUMD type UUID from the raw bytes
+            const jumdTypeIdx = jumbfStr.indexOf('jumd');
+            if (jumdTypeIdx >= 0 && jumbfStart + jumdTypeIdx + 20 <= length) {
+              const uuidStart = jumbfStart + jumdTypeIdx + 4;
+              const uuidBytes: string[] = [];
+              for (let u = 0; u < 16; u++) {
+                uuidBytes.push(uint8Arr[uuidStart + u].toString(16).padStart(2, '0'));
+              }
+              result.c2pa.jumdType = uuidBytes.join('');
+            }
+            // Try to extract label
+            const labelMatch = jumbfStr.match(/c2pa[\s.]*([a-z_.]*)/);
+            result.c2pa.jumdLabel = labelMatch ? `c2pa${labelMatch[1]}` : 'c2pa';
+          }
+        }
       }
 
       // SOF (Start of Frame) - Dimensions & Color Subsampling
@@ -614,15 +625,11 @@ export function parseDeepImageMetadata(buffer: ArrayBuffer, file: { name: string
     const orgMatch = rawText.match(/(contentauth[\s\w.-]*rs[\d.]+|contentauth[\s\w.-]*)/i);
     if (orgMatch) {
       result.c2pa.claimGeneratorOrg = orgMatch[0].trim();
-    } else if (result.c2pa.found) {
-      result.c2pa.claimGeneratorOrg = 'contentauth c2 pa rs0.79.2';
     }
 
     const specMatch = rawText.match(/(?:spec|version)[^\d]{1,10}(2\.[0-9]\.[0-9]|1\.[0-9])/i);
     if (specMatch) {
       result.c2pa.specVersion = specMatch[1];
-    } else if (result.c2pa.found) {
-      result.c2pa.specVersion = '2.2.0';
     }
 
     const iidMatch = rawText.match(/(xmp:iid:[a-zA-Z0-9-]+|urn:uuid:[a-zA-Z0-9-]+)/i);
@@ -635,8 +642,15 @@ export function parseDeepImageMetadata(buffer: ArrayBuffer, file: { name: string
       result.c2pa.signatureUri = sigMatch[0];
     }
 
-    result.c2pa.algorithm = 'sha256';
-    result.c2pa.manifestName = 'jumbf manifest';
+    if (!result.c2pa.algorithm) {
+      // Try to detect algorithm from raw text
+      if (rawText.includes('sha256')) result.c2pa.algorithm = 'sha256';
+      else if (rawText.includes('sha384')) result.c2pa.algorithm = 'sha384';
+      else if (rawText.includes('sha512')) result.c2pa.algorithm = 'sha512';
+    }
+    if (rawText.includes('jumbf manifest') || rawText.includes('jumb')) {
+      result.c2pa.manifestName = 'jumbf manifest';
+    }
   }
 
   // Format aspect ratio
@@ -969,12 +983,19 @@ export default function ImageMetadataRemover() {
       const buffer = await res.arrayBuffer();
 
       const effectiveMeta = {
-        author: customMeta.author.trim() || 'Photographer',
-        copyright: customMeta.copyright.trim() || `© ${new Date().getFullYear()} All Rights Reserved`,
-        title: customMeta.title.trim() || 'Image',
-        description: customMeta.description.trim() || '',
-        keywords: customMeta.keywords.trim() || '',
+        author: customMeta.author.trim(),
+        copyright: customMeta.copyright.trim(),
+        title: customMeta.title.trim(),
+        description: customMeta.description.trim(),
+        keywords: customMeta.keywords.trim(),
       };
+
+      // Don't inject if nothing was entered
+      if (!effectiveMeta.author && !effectiveMeta.copyright && !effectiveMeta.title && !effectiveMeta.keywords) {
+        alert('Please enter at least one metadata field (Author, Copyright, Title, or Tags).');
+        setIsDownloadingCustom(false);
+        return;
+      }
 
       let injectedBytes: Uint8Array;
       if (format === 'image/png') {
@@ -1050,23 +1071,24 @@ export default function ImageMetadataRemover() {
       };
     }
 
-    report['C2PA Content Credentials'] = metadata.c2pa.found
-      ? {
-          'jumd type': metadata.c2pa.jumdType || '(c2pa)-0011-0010-800000aa00389b71',
-          'jumd label': metadata.c2pa.jumdLabel || 'c2pa',
-          'actions software agent name': metadata.c2pa.softwareAgentName || 'API',
-          'actions software agent version': metadata.c2pa.softwareAgentVersion || 'gpt-image-2',
-          'actions digital source type':
-            metadata.c2pa.digitalSourceType || 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia',
-          'claim generator info name': metadata.c2pa.claimGeneratorName || 'OpenAI Media Service API',
-          'claim generator info org': metadata.c2pa.claimGeneratorOrg || 'contentauth c2 pa rs0.79.2',
-          'claim generator info spec version': metadata.c2pa.specVersion || '2.2.0',
-          'instance id': metadata.c2pa.instanceId || 'xmp:iid:4f309a99-d6d3-4065-9fff-536644046d22',
-          'signature': metadata.c2pa.signatureUri || 'self#jumbf=/c2pa/signature',
-          'name': metadata.c2pa.manifestName || 'jumbf manifest',
-          'alg': metadata.c2pa.algorithm || 'sha256',
-        }
-      : { status: 'No C2PA manifest found' };
+    if (metadata.c2pa.found) {
+      const c2paReport: Record<string, string | undefined> = {};
+      if (metadata.c2pa.jumdType) c2paReport['jumd type'] = metadata.c2pa.jumdType;
+      if (metadata.c2pa.jumdLabel) c2paReport['jumd label'] = metadata.c2pa.jumdLabel;
+      if (metadata.c2pa.softwareAgentName) c2paReport['actions software agent name'] = metadata.c2pa.softwareAgentName;
+      if (metadata.c2pa.softwareAgentVersion) c2paReport['actions software agent version'] = metadata.c2pa.softwareAgentVersion;
+      if (metadata.c2pa.digitalSourceType) c2paReport['actions digital source type'] = metadata.c2pa.digitalSourceType;
+      if (metadata.c2pa.claimGeneratorName) c2paReport['claim generator info name'] = metadata.c2pa.claimGeneratorName;
+      if (metadata.c2pa.claimGeneratorOrg) c2paReport['claim generator info org'] = metadata.c2pa.claimGeneratorOrg;
+      if (metadata.c2pa.specVersion) c2paReport['claim generator info spec version'] = metadata.c2pa.specVersion;
+      if (metadata.c2pa.instanceId) c2paReport['instance id'] = metadata.c2pa.instanceId;
+      if (metadata.c2pa.signatureUri) c2paReport['signature'] = metadata.c2pa.signatureUri;
+      if (metadata.c2pa.manifestName) c2paReport['name'] = metadata.c2pa.manifestName;
+      if (metadata.c2pa.algorithm) c2paReport['alg'] = metadata.c2pa.algorithm;
+      report['C2PA Content Credentials'] = c2paReport;
+    } else {
+      report['C2PA Content Credentials'] = { status: 'No C2PA manifest found' };
+    }
 
     report['Camera & Hardware EXIF'] = {
       'camera make': metadata.make || 'None',
@@ -1602,36 +1624,50 @@ export default function ImageMetadataRemover() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-xs min-w-0 w-full">
+                    {metadata.c2pa.softwareAgentName && (
                     <div className="flex justify-between py-1 border-b border-amber-100 min-w-0 gap-2">
                       <span className="text-stone-600 shrink-0">Software Agent Name:</span>
-                      <span className="font-bold text-stone-900 font-mono truncate">{metadata.c2pa.softwareAgentName || 'API'}</span>
+                      <span className="font-bold text-stone-900 font-mono truncate">{metadata.c2pa.softwareAgentName}</span>
                     </div>
+                    )}
+                    {metadata.c2pa.softwareAgentVersion && (
                     <div className="flex justify-between py-1 border-b border-amber-100 min-w-0 gap-2">
                       <span className="text-stone-600 shrink-0">Software Agent Version:</span>
-                      <span className="font-bold text-amber-900 font-mono truncate">{metadata.c2pa.softwareAgentVersion || 'gpt-image-2'}</span>
+                      <span className="font-bold text-amber-900 font-mono truncate">{metadata.c2pa.softwareAgentVersion}</span>
                     </div>
+                    )}
+                    {metadata.c2pa.claimGeneratorName && (
                     <div className="flex justify-between py-1 border-b border-amber-100 min-w-0 gap-2">
                       <span className="text-stone-600 shrink-0">Claim Generator:</span>
-                      <span className="font-semibold text-stone-900 truncate">{metadata.c2pa.claimGeneratorName || 'OpenAI Media Service API'}</span>
+                      <span className="font-semibold text-stone-900 truncate">{metadata.c2pa.claimGeneratorName}</span>
                     </div>
+                    )}
+                    {(metadata.c2pa.specVersion || metadata.c2pa.claimGeneratorOrg) && (
                     <div className="flex justify-between py-1 border-b border-amber-100 min-w-0 gap-2">
-                      <span className="text-stone-600 shrink-0">Spec Version &amp; Org:</span>
-                      <span className="font-mono text-stone-800 truncate">{metadata.c2pa.specVersion || '2.2.0'} ({metadata.c2pa.claimGeneratorOrg || 'contentauth'})</span>
+                      <span className="text-stone-600 shrink-0">Spec Version & Org:</span>
+                      <span className="font-mono text-stone-800 truncate">{metadata.c2pa.specVersion || '—'} {metadata.c2pa.claimGeneratorOrg ? `(${metadata.c2pa.claimGeneratorOrg})` : ''}</span>
                     </div>
+                    )}
+                    {(metadata.c2pa.jumdLabel || metadata.c2pa.jumdType) && (
                     <div className="flex justify-between py-1 border-b border-amber-100 min-w-0 gap-2">
-                      <span className="text-stone-600 shrink-0">JUMD Type &amp; Label:</span>
-                      <span className="font-mono text-stone-800 text-[11px] truncate">{metadata.c2pa.jumdLabel || 'c2pa'} ({metadata.c2pa.jumdType || 'c2pa-0011'})</span>
+                      <span className="text-stone-600 shrink-0">JUMD Type & Label:</span>
+                      <span className="font-mono text-stone-800 text-[11px] truncate">{metadata.c2pa.jumdLabel || '—'} {metadata.c2pa.jumdType ? `(${metadata.c2pa.jumdType})` : ''}</span>
                     </div>
+                    )}
+                    {metadata.c2pa.algorithm && (
                     <div className="flex justify-between py-1 border-b border-amber-100 min-w-0 gap-2">
                       <span className="text-stone-600 shrink-0">Hash Algorithm:</span>
-                      <span className="font-mono text-stone-800">{metadata.c2pa.algorithm || 'sha256'}</span>
+                      <span className="font-mono text-stone-800">{metadata.c2pa.algorithm}</span>
                     </div>
+                    )}
+                    {metadata.c2pa.digitalSourceType && (
                     <div className="md:col-span-2 flex flex-col py-1.5 border-b border-amber-100 min-w-0">
                       <span className="text-stone-600 font-medium">Digital Source Type:</span>
                       <span className="font-mono text-amber-900 text-[11px] break-all select-all mt-0.5" title={metadata.c2pa.digitalSourceType}>
-                        {metadata.c2pa.digitalSourceType || 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia'}
+                        {metadata.c2pa.digitalSourceType}
                       </span>
                     </div>
+                    )}
                     {metadata.c2pa.instanceId && (
                       <div className="md:col-span-2 flex flex-col py-1.5 border-b border-amber-100 min-w-0">
                         <span className="text-stone-600 font-medium">Instance ID:</span>
@@ -1685,15 +1721,15 @@ export default function ImageMetadataRemover() {
                   </div>
                   <div className="flex justify-between py-1 border-b border-stone-200/50 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">JFIF Version:</span>
-                    <span className="font-mono text-stone-800 text-right">{metadata.encoding.jfifVersion || '1.01'}</span>
+                    <span className="font-mono text-stone-800 text-right">{metadata.encoding.jfifVersion || '—'}</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-stone-200/50 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">Resolution Unit:</span>
-                    <span className="font-semibold text-stone-900 text-right">{metadata.encoding.resolutionUnit || 'None'}</span>
+                    <span className="font-semibold text-stone-900 text-right">{metadata.encoding.resolutionUnit || '—'}</span>
                   </div>
                   <div className="flex justify-between py-1 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">X / Y Resolution:</span>
-                    <span className="font-mono text-stone-800 text-right">{metadata.encoding.xResolution ?? 1} / {metadata.encoding.yResolution ?? 1}</span>
+                    <span className="font-mono text-stone-800 text-right">{metadata.encoding.xResolution ?? '—'} / {metadata.encoding.yResolution ?? '—'}</span>
                   </div>
                 </div>
 
@@ -1713,20 +1749,20 @@ export default function ImageMetadataRemover() {
                   <div className="flex justify-between py-1 border-b border-stone-200/50 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">Encoding Process:</span>
                     <span className="font-semibold text-stone-900 truncate max-w-[160px] text-right" title={metadata.encoding.encodingProcess}>
-                      {metadata.encoding.encodingProcess || 'Baseline DCT'}
+                      {metadata.encoding.encodingProcess || '—'}
                     </span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-stone-200/50 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">Bits Per Sample:</span>
-                    <span className="font-semibold text-stone-900 text-right">{metadata.encoding.bitsPerSample || 8} bits</span>
+                    <span className="font-semibold text-stone-900 text-right">{metadata.encoding.bitsPerSample ? `${metadata.encoding.bitsPerSample} bits` : '—'}</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-stone-200/50 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">Color Components:</span>
-                    <span className="font-semibold text-stone-900 text-right">{metadata.encoding.colorComponents || 3}</span>
+                    <span className="font-semibold text-stone-900 text-right">{metadata.encoding.colorComponents ?? '—'}</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-stone-200/50 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">YCbCr Sub Sampling:</span>
-                    <span className="font-mono text-amber-900 font-bold text-right">{metadata.encoding.yCbCrSubSampling || 'YCbCr4:2:0 (2 2)'}</span>
+                    <span className="font-mono text-amber-900 font-bold text-right">{metadata.encoding.yCbCrSubSampling || '—'}</span>
                   </div>
                   <div className="flex justify-between py-1 min-w-0 gap-2">
                     <span className="text-stone-500 shrink-0">Camera Model:</span>
