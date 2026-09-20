@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import exifr from 'exifr';
 import {
   ShieldCheck,
   Upload,
@@ -26,7 +27,17 @@ import {
   Layers,
   Fingerprint,
   Binary,
-  UserCheck
+  UserCheck,
+  ExternalLink,
+  Aperture,
+  Sun,
+  Focus,
+  Timer,
+  Compass,
+  Mountain,
+  ChevronRight,
+  Globe,
+  Tag,
 } from 'lucide-react';
 
 export interface C2PaMetadata {
@@ -47,14 +58,14 @@ export interface C2PaMetadata {
 }
 
 export interface EncodingProperties {
-  encodingProcess?: string; // "Baseline DCT, Huffman coding"
-  bitsPerSample?: number; // 8
-  colorComponents?: number; // 3
-  yCbCrSubSampling?: string; // "YCbCr4:2:0 (2 2)"
-  jfifVersion?: string; // "1.01"
-  resolutionUnit?: string; // "None", "inches", "cm"
-  xResolution?: number; // 1
-  yResolution?: number; // 1
+  encodingProcess?: string;
+  bitsPerSample?: number;
+  colorComponents?: number;
+  yCbCrSubSampling?: string;
+  jfifVersion?: string;
+  resolutionUnit?: string;
+  xResolution?: number;
+  yResolution?: number;
 }
 
 export interface CustomOwnership {
@@ -77,7 +88,7 @@ export interface ExtractedMetadata {
   lastModified: string;
   width: number;
   height: number;
-  imageSize: string; // "1122x1402"
+  imageSize: string;
   megapixels: string;
   aspectRatio: string;
 
@@ -88,7 +99,33 @@ export interface ExtractedMetadata {
   dateTime?: string;
   hasGps: boolean;
   gpsCoordinates?: string;
+  gpsLatitude?: number;
+  gpsLongitude?: number;
+  gpsAltitude?: number;
   rawTagsCount: number;
+
+  // Camera settings (from exifr)
+  exposureTime?: number;
+  fNumber?: number;
+  iso?: number;
+  focalLength?: number;
+  focalLengthIn35mm?: number;
+  flash?: string;
+  whiteBalance?: string;
+  lensModel?: string;
+  lensInfo?: string;
+  meteringMode?: string;
+  exposureProgram?: string;
+  exposureCompensation?: number;
+  sceneCaptureType?: string;
+  colorSpace?: string;
+  orientation?: number;
+  contrast?: string;
+  saturation?: string;
+  sharpness?: string;
+  digitalZoomRatio?: number;
+  subjectDistance?: number;
+  lightSource?: string;
 
   // Encoding & Format specs
   encoding: EncodingProperties;
@@ -102,6 +139,9 @@ export interface ExtractedMetadata {
   // Raw Header Hex
   rawHeaderHex: string[];
   rawHeaderAscii: string[];
+
+  // Complete metadata from exifr (all parsed tags)
+  allExifrTags?: Record<string, any>;
 }
 
 interface CustomMetadata {
@@ -689,7 +729,7 @@ export default function ImageMetadataRemover() {
     keywords: '',
   });
 
-  const handleIncomingFile = (file: File) => {
+  const handleIncomingFile = async (file: File) => {
     if (!file.type.startsWith('image/')) {
       alert('Please upload a valid image file (JPG, PNG, WebP).');
       return;
@@ -699,10 +739,61 @@ export default function ImageMetadataRemover() {
     setOriginalSize(file.size);
     setIsProcessing(true);
 
+    let exifrData: any = null;
+    try {
+      exifrData = await exifr.parse(file, { tiff: true, xmp: true, icc: true, iptc: true, jfif: true, gps: true });
+    } catch (err) {
+      console.warn("exifr parsing failed:", err);
+    }
+
     const binaryReader = new FileReader();
     binaryReader.onload = (e) => {
       const buffer = e.target?.result as ArrayBuffer;
       const parsedMeta = parseDeepImageMetadata(buffer, file);
+
+      if (exifrData) {
+        parsedMeta.allExifrTags = exifrData;
+        parsedMeta.make = exifrData.Make || parsedMeta.make;
+        parsedMeta.model = exifrData.Model || parsedMeta.model;
+        parsedMeta.software = exifrData.Software || parsedMeta.software;
+        // Keep string representations but use exifr's if available
+        if (exifrData.DateTimeOriginal || exifrData.CreateDate || exifrData.ModifyDate) {
+          const dt = exifrData.DateTimeOriginal || exifrData.CreateDate || exifrData.ModifyDate;
+          parsedMeta.dateTime = typeof dt === 'string' ? dt : (dt instanceof Date ? dt.toISOString() : String(dt));
+        }
+        
+        if (exifrData.latitude != null && exifrData.longitude != null) {
+          parsedMeta.hasGps = true;
+          parsedMeta.gpsLatitude = exifrData.latitude;
+          parsedMeta.gpsLongitude = exifrData.longitude;
+          parsedMeta.gpsAltitude = exifrData.GPSAltitude;
+          const latDir = exifrData.latitude >= 0 ? 'N' : 'S';
+          const lngDir = exifrData.longitude >= 0 ? 'E' : 'W';
+          parsedMeta.gpsCoordinates = `${Math.abs(exifrData.latitude).toFixed(4)}° ${latDir}, ${Math.abs(exifrData.longitude).toFixed(4)}° ${lngDir}`;
+        }
+        
+        parsedMeta.exposureTime = exifrData.ExposureTime;
+        parsedMeta.fNumber = exifrData.FNumber;
+        parsedMeta.iso = exifrData.ISO;
+        parsedMeta.focalLength = exifrData.FocalLength;
+        parsedMeta.focalLengthIn35mm = exifrData.FocalLengthIn35mmFormat;
+        parsedMeta.flash = exifrData.Flash;
+        parsedMeta.whiteBalance = exifrData.WhiteBalance;
+        parsedMeta.lensModel = exifrData.LensModel || exifrData.Lens;
+        parsedMeta.meteringMode = exifrData.MeteringMode;
+        parsedMeta.exposureProgram = exifrData.ExposureProgram;
+        parsedMeta.exposureCompensation = exifrData.ExposureCompensation;
+        parsedMeta.sceneCaptureType = exifrData.SceneCaptureType;
+        parsedMeta.colorSpace = exifrData.ColorSpace;
+        parsedMeta.orientation = exifrData.Orientation;
+        parsedMeta.contrast = exifrData.Contrast;
+        parsedMeta.saturation = exifrData.Saturation;
+        parsedMeta.sharpness = exifrData.Sharpness;
+        parsedMeta.digitalZoomRatio = exifrData.DigitalZoomRatio;
+        parsedMeta.subjectDistance = exifrData.SubjectDistance;
+        parsedMeta.lightSource = exifrData.LightSource;
+      }
+
 
       // If the uploaded file already has custom ownership (e.g. from previous download), pre-populate input fields!
       if (parsedMeta.customOwnership) {
@@ -1090,17 +1181,39 @@ export default function ImageMetadataRemover() {
       report['C2PA Content Credentials'] = { status: 'No C2PA manifest found' };
     }
 
-    report['Camera & Hardware EXIF'] = {
+    const cameraReport: Record<string, any> = {
       'camera make': metadata.make || 'None',
       'camera model': metadata.model || 'None',
+      'lens model': metadata.lensModel || 'None',
       'camera software': metadata.software || 'None',
       'capture date': metadata.dateTime || 'None',
-      'has gps location': metadata.hasGps,
-      'gps details': metadata.gpsCoordinates || 'None',
     };
 
+    if (metadata.exposureTime) cameraReport['shutter speed'] = metadata.exposureTime >= 1 ? `${metadata.exposureTime}s` : `1/${Math.round(1 / metadata.exposureTime)}s`;
+    if (metadata.fNumber) cameraReport['aperture'] = `f/${metadata.fNumber}`;
+    if (metadata.iso) cameraReport['iso'] = metadata.iso;
+    if (metadata.focalLength) cameraReport['focal length'] = `${metadata.focalLength}mm`;
+    if (metadata.flash) cameraReport['flash'] = metadata.flash;
+    if (metadata.whiteBalance) cameraReport['white balance'] = metadata.whiteBalance;
+    if (metadata.exposureProgram) cameraReport['exposure program'] = metadata.exposureProgram;
+    if (metadata.meteringMode) cameraReport['metering mode'] = metadata.meteringMode;
+
+    cameraReport['has gps location'] = metadata.hasGps;
+    if (metadata.hasGps) {
+      cameraReport['gps coordinates'] = metadata.gpsCoordinates;
+      cameraReport['gps latitude'] = metadata.gpsLatitude;
+      cameraReport['gps longitude'] = metadata.gpsLongitude;
+      if (metadata.gpsAltitude != null) cameraReport['gps altitude'] = metadata.gpsAltitude;
+    }
+
+    report['Camera & Hardware EXIF'] = cameraReport;
+
+    if (metadata.allExifrTags) {
+      report['All Raw Parsed Tags (exifr)'] = metadata.allExifrTags;
+    }
+
     report['Raw Data'] = {
-      'raw header': metadata.rawHeaderHex.join('\n'),
+      'raw header hex': metadata.rawHeaderHex.join('\n'),
     };
 
     const jsonStr = JSON.stringify(report, null, 2);
@@ -1770,6 +1883,126 @@ export default function ImageMetadataRemover() {
                   </div>
                 </div>
               </div>
+
+              {/* CAMERA SETTINGS & EXIF */}
+              {(metadata.make || metadata.exposureTime || metadata.focalLength || metadata.iso || metadata.fNumber) && (
+                <div className="bg-[#FAF8F5] p-4 sm:p-5 rounded-xl border border-stone-200/80 space-y-3 min-w-0 w-full overflow-hidden">
+                  <span className="font-extrabold text-stone-900 flex items-center gap-2 pb-2 border-b border-stone-200">
+                    <Camera className="w-4 h-4 text-stone-600 shrink-0" />
+                    <span>Camera Hardware & Exposure (EXIF)</span>
+                  </span>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Make & Model</span>
+                      <span className="font-semibold text-stone-900 block truncate">{metadata.make || 'Unknown'} {metadata.model || ''}</span>
+                    </div>
+                    {metadata.lensModel && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Lens</span>
+                      <span className="font-medium text-stone-900 block truncate" title={metadata.lensModel}>{metadata.lensModel}</span>
+                    </div>
+                    )}
+                    {metadata.focalLength && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Focal Length</span>
+                      <span className="font-mono text-stone-800 block">{metadata.focalLength} mm {metadata.focalLengthIn35mm ? `(${metadata.focalLengthIn35mm}mm eq)` : ''}</span>
+                    </div>
+                    )}
+                    {metadata.fNumber && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Aperture</span>
+                      <span className="font-mono text-stone-800 block flex items-center gap-1"><Aperture className="w-3 h-3 text-stone-400" /> f/{metadata.fNumber}</span>
+                    </div>
+                    )}
+                    {metadata.exposureTime && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Shutter Speed</span>
+                      <span className="font-mono text-stone-800 block flex items-center gap-1"><Timer className="w-3 h-3 text-stone-400" /> {metadata.exposureTime >= 1 ? metadata.exposureTime : `1/${Math.round(1 / metadata.exposureTime)}`} s</span>
+                    </div>
+                    )}
+                    {metadata.iso && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">ISO</span>
+                      <span className="font-mono text-stone-800 block flex items-center gap-1"><Sun className="w-3 h-3 text-stone-400" /> {metadata.iso}</span>
+                    </div>
+                    )}
+                    {metadata.dateTime && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Date & Time</span>
+                      <span className="font-mono text-stone-800 block truncate">{metadata.dateTime}</span>
+                    </div>
+                    )}
+                    {metadata.software && (
+                    <div className="space-y-1">
+                      <span className="text-stone-500 block">Software</span>
+                      <span className="font-medium text-stone-900 block truncate">{metadata.software}</span>
+                    </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* GPS & LOCATION */}
+              {metadata.hasGps && metadata.gpsCoordinates && (
+                <div className="bg-rose-50 border border-rose-200/80 rounded-xl p-4 sm:p-5 space-y-3 min-w-0 w-full overflow-hidden">
+                  <div className="flex items-center justify-between border-b border-rose-100 pb-2">
+                    <span className="font-extrabold text-rose-900 flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-rose-600 shrink-0" />
+                      <span>GPS Location Data Found</span>
+                    </span>
+                    <a 
+                      href={`https://www.google.com/maps/search/?api=1&query=${metadata.gpsLatitude},${metadata.gpsLongitude}`} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold bg-white text-rose-700 hover:text-rose-900 border border-rose-200 px-2.5 py-1 rounded-md shadow-xs transition-colors"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      View on Map
+                    </a>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                    <div className="space-y-1">
+                      <span className="text-rose-700/80 block font-medium">Coordinates</span>
+                      <span className="font-mono text-rose-900 block truncate font-bold">{metadata.gpsCoordinates}</span>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="text-rose-700/80 block font-medium">Latitude</span>
+                      <span className="font-mono text-rose-900 block">{metadata.gpsLatitude}</span>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="text-rose-700/80 block font-medium">Longitude</span>
+                      <span className="font-mono text-rose-900 block">{metadata.gpsLongitude}</span>
+                    </div>
+                    {metadata.gpsAltitude != null && (
+                    <div className="space-y-1">
+                      <span className="text-rose-700/80 block font-medium">Altitude</span>
+                      <span className="font-mono text-rose-900 block flex items-center gap-1">
+                        <Mountain className="w-3 h-3 text-rose-500" />
+                        {Math.abs(metadata.gpsAltitude).toFixed(1)} meters {metadata.gpsAltitude < 0 ? 'below' : 'above'} sea level
+                      </span>
+                    </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* ALL RAW EXIF TAGS (Expandable) */}
+              {metadata.allExifrTags && Object.keys(metadata.allExifrTags).length > 0 && (
+                <details className="group bg-white border border-stone-200/80 rounded-xl overflow-hidden shadow-xs cursor-pointer">
+                  <summary className="font-extrabold text-xs text-stone-800 flex items-center justify-between p-4 bg-stone-50 group-hover:bg-stone-100/50 transition-colors">
+                    <span className="flex items-center gap-2">
+                      <Tag className="w-4 h-4 text-stone-500" />
+                      View All Raw EXIF Tags ({Object.keys(metadata.allExifrTags).length})
+                    </span>
+                    <ChevronDown className="w-4 h-4 text-stone-400 group-open:rotate-180 transition-transform" />
+                  </summary>
+                  <div className="p-4 border-t border-stone-200 bg-stone-950 text-emerald-400 font-mono text-[11px] overflow-x-auto max-h-[400px] overflow-y-auto">
+                    <pre className="whitespace-pre-wrap">{JSON.stringify(metadata.allExifrTags, null, 2)}</pre>
+                  </div>
+                </details>
+              )}
 
               {/* 4. RAW HEADER HEX INSPECTION PREVIEW */}
               <div className="space-y-2 pt-1 min-w-0 w-full overflow-hidden">
