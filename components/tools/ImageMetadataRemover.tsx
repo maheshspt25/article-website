@@ -1180,7 +1180,6 @@ export default function ImageMetadataRemover() {
     } else {
       report['C2PA Content Credentials'] = { status: 'No C2PA manifest found' };
     }
-
     const cameraReport: Record<string, any> = {
       'camera make': metadata.make || 'None',
       'camera model': metadata.model || 'None',
@@ -1213,6 +1212,7 @@ export default function ImageMetadataRemover() {
     }
 
     report['Raw Data'] = {
+      'raw header': metadata.rawHeaderHex.join('\n'),
       'raw header hex': metadata.rawHeaderHex.join('\n'),
     };
 
