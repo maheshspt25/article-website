@@ -1,7 +1,8 @@
 import React from 'react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { constructMetadata } from '@/lib/seo';
-import { Mail, MapPin, PhoneCall, MessageSquare } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata = constructMetadata({
   title: 'Contact Us - InfoMitra Editorial Desk',
@@ -44,34 +45,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 border-b pb-3">Send Editorial Feedback</h2>
-          <form className="space-y-4 text-xs">
-            <div>
-              <label className="block font-bold text-slate-700 mb-1">Your Full Name</label>
-              <input type="text" placeholder="e.g. Rahul Sharma" className="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none" required />
-            </div>
-
-            <div>
-              <label className="block font-bold text-slate-700 mb-1">Email Address</label>
-              <input type="email" placeholder="rahul@example.com" className="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none" required />
-            </div>
-
-            <div>
-              <label className="block font-bold text-slate-700 mb-1">Subject</label>
-              <input type="text" placeholder="Editorial Feedback / Correction" className="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none" required />
-            </div>
-
-            <div>
-              <label className="block font-bold text-slate-700 mb-1">Message</label>
-              <textarea rows={4} placeholder="Describe your query or feedback..." className="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none" required></textarea>
-            </div>
-
-            <button type="submit" className="w-full py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg transition-colors">
-              Submit Feedback
-            </button>
-          </form>
-        </div>
+        {/* Client-side form component */}
+        <ContactForm />
       </div>
     </div>
   );
