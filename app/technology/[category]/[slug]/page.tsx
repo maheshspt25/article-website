@@ -160,7 +160,7 @@ export default async function TechArticlePage({ params }: TechArticlePageProps) 
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}
-          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName="InfoMitra Tech Testing Lab" />
+          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName={article.author?.name || "InfoMitra Editorial Desk"} />
 
           {/* <AdSlot slotId="tech-detail-ad" /> */}
 

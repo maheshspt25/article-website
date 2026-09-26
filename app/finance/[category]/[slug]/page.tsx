@@ -185,7 +185,7 @@ export default async function FinanceArticlePage({ params }: FinanceArticlePageP
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}
-          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName="InfoMitra Financial Fact Desk" />
+          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName={article.author?.name || "InfoMitra Editorial Desk"} />
 
           {/* FAQs */}
           {faqs.length > 0 && (

@@ -102,7 +102,7 @@ export default async function HealthDetailCatPage({ params }: HealthArticlePageP
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}
-          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName="InfoMitra Health Verification Desk" />
+          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName={article.author?.name || "InfoMitra Editorial Desk"} />
         </article>
 
         <RelatedContent title="Related Health Articles" articles={relatedArticles} />
