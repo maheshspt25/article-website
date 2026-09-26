@@ -14,23 +14,34 @@ export default function ContactForm() {
 
     const formData = new FormData(e.currentTarget);
     const data = {
+      // Use Web3Forms access key
+      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
       name: formData.get('name'),
       email: formData.get('email'),
       subject: formData.get('subject'),
       message: formData.get('message'),
     };
 
+    if (!data.access_key) {
+      setStatus('error');
+      setErrorMessage('Missing Web3Forms API Key. Please add it to your .env file.');
+      return;
+    }
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Failed to send message');
       }
 
       setStatus('success');
@@ -64,7 +75,7 @@ export default function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           {status === 'error' && (
             <div className="p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
-              <XCircle className="w-4 h-4" />
+              <XCircle className="w-4 h-4 shrink-0" />
               <span>{errorMessage}</span>
             </div>
           )}
