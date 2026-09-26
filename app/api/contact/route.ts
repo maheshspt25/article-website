@@ -24,15 +24,25 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
+    const contentType = response.headers.get("content-type");
+    let result;
+    
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+      result = await response.json();
+    } else {
+      const text = await response.text();
+      console.error('Web3Forms returned non-JSON:', text);
+      return NextResponse.json({ success: false, message: 'Web3Forms API Error: Invalid response format' }, { status: 502 });
+    }
 
     if (!response.ok || !result.success) {
-      return NextResponse.json({ success: false, message: result.message || 'Failed to send message' }, { status: 400 });
+      console.error('Web3Forms Error Result:', result);
+      return NextResponse.json({ success: false, message: result.message || 'Failed to send message via Web3Forms' }, { status: 400 });
     }
 
     return NextResponse.json({ success: true, message: 'Message sent successfully' }, { status: 200 });
   } catch (error: any) {
-    console.error('Web3Forms API Route Error:', error);
-    return NextResponse.json({ success: false, message: 'Something went wrong on the server.' }, { status: 500 });
+    console.error('Web3Forms API Route Exception:', error);
+    return NextResponse.json({ success: false, message: `Server error: ${error.message}` }, { status: 500 });
   }
 }

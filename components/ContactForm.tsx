@@ -37,7 +37,8 @@ export default function ContactForm() {
           throw new Error(result.message || 'Failed to send message');
         }
       } else {
-        throw new Error('Server returned an unexpected response. Please refresh the page and try again.');
+        const text = await response.text();
+        throw new Error(`Server returned HTML error (${response.status}): ${text.substring(0, 60)}...`);
       }
 
       setStatus('success');
