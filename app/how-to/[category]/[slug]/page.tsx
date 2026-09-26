@@ -224,7 +224,7 @@ export default async function HowToArticlePage({ params }: HowToArticlePageProps
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 
           {/* Source of Truth Section */}
-          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName={article.author?.name || "InfoMitra Editorial Desk"} />
+          <SourceOfTruth sources={sources} lastVerifiedDate={article.updatedAt} checkerName="InfoMitra Editorial Desk" />
 
           {/* <AdSlot slotId="howto-detail-ad" /> */}
 
