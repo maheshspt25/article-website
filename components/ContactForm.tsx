@@ -14,22 +14,31 @@ export default function ContactForm() {
 
     const formData = new FormData(e.currentTarget);
     const data = {
+      // Must use NEXT_PUBLIC so the browser can read the key
+      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
       name: formData.get('name'),
       email: formData.get('email'),
       subject: formData.get('subject'),
       message: formData.get('message'),
     };
-    
+
+    if (!data.access_key) {
+      setStatus('error');
+      setErrorMessage('Missing Web3Forms API Key. Please ensure NEXT_PUBLIC_WEB3FORMS_KEY is set in Vercel.');
+      return;
+    }
+
     try {
-      const response = await fetch('/api/contact', {
+      // Fetch directly from the browser (Web3Forms blocks server-side requests)
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(data),
       });
 
-      // Handle raw HTML error responses (e.g., 404/500 pages) gracefully
       const contentType = response.headers.get("content-type");
       if (contentType && contentType.indexOf("application/json") !== -1) {
         const result = await response.json();
@@ -37,11 +46,11 @@ export default function ContactForm() {
           throw new Error(result.message || 'Failed to send message');
         }
       } else {
-        const text = await response.text();
-        throw new Error(`Server returned HTML error (${response.status}): ${text.substring(0, 60)}...`);
+        throw new Error('Web3Forms returned an invalid response format.');
       }
 
       setStatus('success');
+      (e.target as HTMLFormElement).reset();
     } catch (error: any) {
       console.error('Contact form error:', error);
       setStatus('error');
