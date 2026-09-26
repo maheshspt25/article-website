@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Loader2, CheckCircle2, XCircle } from 'lucide-react';
+import { submitContactForm } from '@/app/actions/contact';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -13,43 +14,20 @@ export default function ContactForm() {
     setErrorMessage('');
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      // Use Web3Forms access key
-      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('subject'),
-      message: formData.get('message'),
-    };
-
-    if (!data.access_key) {
-      setStatus('error');
-      setErrorMessage('Missing Web3Forms API Key. Please add it to your .env file.');
-      return;
-    }
-
+    
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(data),
-      });
+      const result = await submitContactForm(formData);
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Failed to send message');
+      if (!result.success) {
+        throw new Error(result.message);
       }
 
       setStatus('success');
       (e.target as HTMLFormElement).reset();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Contact form error:', error);
       setStatus('error');
-      setErrorMessage('Something went wrong. Please try again later.');
+      setErrorMessage(error.message || 'Something went wrong. Please try again later.');
     }
   };
 
