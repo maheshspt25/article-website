@@ -2,21 +2,42 @@
 
 import React, { useState } from 'react';
 import { Loader2, CheckCircle2, XCircle } from 'lucide-react';
-import { submitContactForm } from '@/app/actions/contact';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const clientAction = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setStatus('loading');
     setErrorMessage('');
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
     
     try {
-      const result = await submitContactForm(formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-      if (!result.success) {
-        throw new Error(result.message);
+      // Handle raw HTML error responses (e.g., 404/500 pages) gracefully
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'Failed to send message');
+        }
+      } else {
+        throw new Error('Server returned an unexpected response. Please refresh the page and try again.');
       }
 
       setStatus('success');
@@ -49,7 +70,7 @@ export default function ContactForm() {
     <div className="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
       <h2 className="text-lg font-bold text-slate-900 border-b pb-3">Send Editorial Feedback</h2>
       
-      <form action={clientAction} className="space-y-4 text-xs">
+      <form onSubmit={handleSubmit} className="space-y-4 text-xs">
         {status === 'error' && (
           <div className="p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
             <XCircle className="w-5 h-5 shrink-0" />
